@@ -25,6 +25,10 @@ public class StoreDAO {
 		
 		return storegamelist;
 	}
+	public List<StoreDTO> getSortDESC() {
+		List<StoreDTO> desclist = sqlsession.selectList("Store.getSortDESC");
+		return desclist;
+	}
 	
 	// 모든 게임수 받기
 	public int getStoreGameCnt() {
@@ -42,6 +46,7 @@ public class StoreDAO {
 	public int getGenreCnt(int genre) {
 		return sqlsession.selectOne("Store.getGenreCnt", genre);
 	}
+
 	
 	
 	

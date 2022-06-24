@@ -26,7 +26,7 @@
 		<section>
 		   <ul class="nav justify-content-center">
 		      <li class="store-nav store-icon-width">
-		        <a class="nav-link" aria-current="page" href="/store/Storegamelist">
+		        <a id="store-all" class="nav-link" aria-current="page" href="/store/Storegamelist">
 		          <div class="store-icon-all"></div>
 		          <p class="store-icon-p">전체</p> 
 		        </a>
@@ -85,15 +85,16 @@
 				<li class="store-nav">
 					<p class="store-nav-p">정렬기준</p>
 				</li>
-				<li class="store-nav dropdown"><select
-					class="form-select store-form-select"
-					aria-label="Default select example">
-						<option selected>사전순</option>
-						<option value="1">인기순</option>
-						<option value="2">추천순</option>
-						<option value="3">가격: 오름차순</option>
-						<option value="4">가격: 내림차순</option>
-				</select></li>
+				<li class="store-nav dropdown">
+					<form action="/store/Storegamelist" method="post">
+						<select name="store-sort" class="form-select store-form-select" aria-label="Default select example">
+							<option value="0">사전순</option>
+							<option value="1">가격: 오름차순</option>
+							<option value="2">가격: 내림차순</option>
+						</select>
+						<input type="submit" value="보기">
+					</form>
+				</li>
 			</ul>
 			<div class="store-nav">
 				<p class="store-nav-p">
@@ -105,6 +106,7 @@
 		<c:choose>
 			<c:when test="${storegamelist != null and fn:length(storegamelist) > 0 }">
 				<div class="row row-cols-1 row-cols-md-6 g-4 store-row">
+				
 					<c:forEach var="list" items="${storegamelist }">
 						<div class="col">
 							<a class="card h-100 store-card" href="/gamedetail.jsp"> 
@@ -115,7 +117,8 @@
 								</div>
 							</a>
 						</div>
-					</c:forEach>	
+					</c:forEach>
+						
 				</div>
 			</c:when>
 			
@@ -151,6 +154,11 @@
 			$("li.store-icon-width").removeClass("store-active")
 			$(this).addClass("store-active")
 		})
+		
+		
+		
+		
+		
 	</script>
 	
 

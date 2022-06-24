@@ -52,6 +52,15 @@
 		ORDER BY GAME_NAME 
 	</select>
 	
+	<select id="getSortDESC" resultMap="gameListMap">
+		SELECT	g.GAME_NUM, g.GAME_NAME, g.GAME_PRICE, c.CATE_GENRE, gi.IMAGE_MAIN 
+		FROM 	GAME g 
+			LEFT OUTER JOIN CATEGORY c ON g.CATE_NUM = c.CATE_NUM 
+ 			LEFT OUTER JOIN GAME_IMAGE gi ON g.GAME_NUM = gi.GAME_NUM 
+		ORDER BY GAME_PRICE DESC
+	</select>
+	
+	
 	<!-- 게임수 가져오기  -->
 	<select id="getStoreGameCnt" resultType="_int">
 		SELECT	count(*) FROM 	GAME 

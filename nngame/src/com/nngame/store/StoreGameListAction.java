@@ -17,13 +17,25 @@ public class StoreGameListAction implements Action{
 		// 전체 게임수 가져오기
 		int totalCnt = sdao.getStoreGameCnt();
 		
+		// 정렬하기
+		String sort = request.getParameter("store-sort");
 		
 		// 보내기
 		// 게임수
 		request.setAttribute("totalCnt", totalCnt);
 		
 		// 전체게임리스트
-		request.setAttribute("storegamelist", sdao.getStoreGameList());
+		if( sort == null || sort.equals("0") ) {
+			request.setAttribute("storegamelist", sdao.getStoreGameList());
+		}else if( sort.equals("1")){
+			request.setAttribute("storegamelist", sdao.getSortDESC());
+		}
+		
+		
+		
+		
+		
+		
 		
 		// forward방식으로 보내기
 		forward.setRedirect(false);
