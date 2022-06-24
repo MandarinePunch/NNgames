@@ -44,10 +44,23 @@
 					</form>
 
 					<ul class="navbar-nav">
-						<li class="nav-item header__nav-item"><a
-							class="nav-link active" aria-current="page" href="/cart.jsp">
-								<i class="fa-solid fa-cart-shopping"></i>
-						</a></li>
+						<%-- 장바구니 로그인 여부 처리 --%>
+						<c:choose>
+							<c:when test="${empty udto }">
+								<li class="nav-item header__nav-item"><a
+									class="nav-link active" aria-current="page" href="javascript:pleaseLogin()">
+										<i class="fa-solid fa-cart-shopping"></i>
+								</a></li>
+							</c:when>
+							<c:otherwise>			
+								<li class="nav-item header__nav-item"><a
+									class="nav-link active" aria-current="page" href="/cart/List">
+										<i class="fa-solid fa-cart-shopping"></i>
+								</a></li>
+							</c:otherwise>
+						</c:choose>
+						
+						<%-- 유저 로그인 여부 처리 --%>
 						<c:choose>
 							<c:when test="${empty udto}">
 								<li class="nav-item header__nav-item"><a

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Cart">
+		<!-- GameDTO resultMap -->
+	<resultMap type="GameDTO" id="gameMap">
+		<result column="GAME_NUM" property="game_num"/>
+		<result column="GAME_NAME" property="game_name"/>
+		<result column="GAME_PRICE" property="game_price"/>
+		<result column="CATE_NUM" property="cate_num"/>
+	</resultMap>
+	
+	<!-- ImageDTO resultMap -->
+	<resultMap type="ImageDTO" id="imageMap">
+		<result column="IMAGE_NUM" property="image_num"/>
+		<result column="GAME_NUM" property="game_num"/>
+		<result column="IMAGE_MAIN" property="image_main"/>
+		<result column="IMAGE_BANNER" property="image_banner"/>
+	</resultMap>
+	
+	<resultMap type="CartDTO" id="cartMap">
+		<result column="CART_NUM" property="cart_num"/>
+		<result column="CART_IN" property="cart_in"/>
+		<result column="GAME_NUM" property="game_num"/>
+		<result column="USER_NUM" property="user_num"/>
+		<collection property="gameDTO" resultMap="gameMap" />
+		<collection property="imageDTO" resultMap="imageMap" />
+	</resultMap>
+	
+	<!-- cart에 불러올 정보 -->
+	<select id="getCartGamelist" parameterType="_int"  resultMap="cartMap">
+		SELECT   c.CART_NUM , c.CART_IN , c.USER_NUM , c.GAME_NUM , g.GAME_NAME , g.GAME_PRICE , gi.IMAGE_BANNER
+		FROM     CART c 
+	    	LEFT OUTER JOIN GAME g ON c.GAME_NUM = g.GAME_NUM 
+	    	LEFT OUTER JOIN GAME_IMAGE gi ON g.GAME_NUM = gi.IMAGE_NUM
+	    WHERE	 c.USER_NUM = #{user_num}
+	    ORDER BY c.CART_NUM 
+	</select>
+	
+	<!-- 담은 게임 삭제 -->
+	<delete id="deleteCart" parameterType="_int">
+		DELETE FROM CART c WHERE CART_NUM = #{CART_NUM }
+	</delete>
+	
+</mapper>

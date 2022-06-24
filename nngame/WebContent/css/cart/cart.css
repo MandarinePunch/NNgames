@@ -53,6 +53,14 @@
 	padding: 10px;
 }
 
+/* 장바구니가 비어있어요 문구 */
+.cart-empty{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
 /* 삭제 버튼 css */
 .cart-box__delete {
 	float: right;
