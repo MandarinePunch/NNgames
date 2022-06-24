@@ -63,7 +63,7 @@
 				<a href="javascript:kakaoLogin();"><img src="/img/icon/login/kakao.png"></a>
 				
 				<!-- Naver Login form -->
-				<form action="/user/naverLogin.io" id="naverfrm" onsubmit="return false" method="get">
+				<form action="/user/naverLogin.io" id="naverfrm" onsubmit="return false" method="post">
 					<input type="hidden" name="navernick" id="naver_nick">
 					<input type="hidden" name="naverEmail" id="naver_email">
 					<input type="hidden" name="naverage" id="naver_age">
