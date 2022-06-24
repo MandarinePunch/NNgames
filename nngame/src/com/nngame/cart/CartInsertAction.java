@@ -28,6 +28,8 @@ public class CartInsertAction implements Action{
 		// 현재 유저의 장바구니에 있는 게임을 불러옴
 		List<Integer> alreadyInsertGame = cdao.getGameNum(user_num);
 		
+		// 라이브러리도 똑같이 가져와서 이미 있는 게임이라면 못담게 해주자
+		
 		if(user_num != -1) {
 			// 이미 있는 게임인지 확인 flag
 			boolean flag = false;
@@ -51,7 +53,7 @@ public class CartInsertAction implements Action{
 			forward.setPath("/game/detail?game_num=" + game_num);
 			forward.setRedirect(false);
 		} else {
-			forward.setPath("/");
+			forward.setPath("/user/login");
 			forward.setRedirect(true);
 		}
 		

@@ -92,7 +92,7 @@
 				</c:choose>
 					<form action="/cart/insert" method="post" id="gamePaymentForm">
 						<div class="detail__btn-box">
-							<button type="button" class="btn submit-btn detail__btn" onclick="goToPay(${gamedetail.gameDTO.game_price})">바로 구매</button>
+							<button type="button" class="btn submit-btn detail__btn" onclick="goToPay(${gamedetail.gameDTO.game_price}, ${gamedetail.gameDTO.game_num })">바로 구매</button>
 						</div>
 						<div class="detail__btn-box">
 							<button type="button" class="btn submit-btn detail__btn" onclick="insertCart(${gamedetail.gameDTO.game_num})">장바구니에 담기</button>

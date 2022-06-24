@@ -52,4 +52,9 @@
 	<select id="getGameNum" parameterType="_int" resultType="_int">
 		SELECT GAME_NUM FROM CART c WHERE USER_NUM = #{user_num}
 	</select>
+	
+	<!-- 결제 완료 후 모든 카트 내역 삭제 -->
+	<delete id="deleteAllCart" parameterType="_int">
+		DELETE FROM CART c WHERE USER_NUM = #{user_num}
+	</delete>
 </mapper>

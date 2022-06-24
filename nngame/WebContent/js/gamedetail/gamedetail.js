@@ -49,9 +49,9 @@ function insertCart(gameNum){
 	payForm.submit();
 }
 
-function goToPay(price){
+function goToPay(price, gameNum){
 	const payForm = document.getElementById("gamePaymentForm");
 	
-	payForm.action = "/payment/pay?game_price=" + price;
+	payForm.action = "/payment/pay?game_price=" + price + "&game_num=" + gameNum;
 	payForm.submit();
 }

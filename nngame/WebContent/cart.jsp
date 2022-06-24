@@ -42,8 +42,10 @@
 							<div class="cart-box">
 								<div class="cart-box__game">
 									<div class="cart-box__image">
-										<img src="/img/games/${cart.imageDTO.image_banner }"
-											class="img-fluid rounded-start">
+										<a href="/game/detail?game_num=${cart.game_num }">
+											<img src="/img/games/${cart.imageDTO.image_banner }"
+												class="img-fluid rounded-start">								
+										</a>
 									</div>
 									<div class="cart-box__info">
 										<div class="cart-box__text">
@@ -82,7 +84,11 @@
 						</div>
 						<div class="d-grid gap-2">
 							<%-- totalPrice를 pay에 넘겨줌 --%>
-							<button class="btn submit-btn" type="button" onclick="goToPay(${totalPrice})">구매하기</button>
+							<div>					
+								<form action="/payment/pay?game_price=${totalPrice }" method="post" id="gamePaymentForm">						
+									<button class="btn submit-btn cart-pay__btn" type="submit">구매하기</button>
+								</form>
+							</div>
 						</div>
 					</div>
 				</c:otherwise>
@@ -101,12 +107,6 @@
 			form.submit();
 		}
 		
-		function goToPay(price){
-			const payForm = document.getElementById("gamePaymentForm");
-			
-			payForm.action = "/payment/pay?game_price=" + price;
-			payForm.submit();
-		}
 	</script>	
 	
 	<!-- bootstrap -->

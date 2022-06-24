@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Payment">
+	<!-- pay에 저장 -->
+	<insert id="insertPayLog" parameterType="hashmap">
+		INSERT INTO PAY
+		VALUES(SEQ_pay_NO.nextval, #{pay_method}, sysdate, #{game_num} , #{user_num})
+	</insert>
+	
+	<!-- lib에 저장 -->
+	<insert id="insertLibrary" parameterType="hashmap">
+		INSERT INTO LIBRARY
+		VALUES (seq_lib_no.nextval, '00:00', #{game_num}, #{user_num})
+	</insert>
+
+</mapper>

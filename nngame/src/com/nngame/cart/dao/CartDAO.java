@@ -56,6 +56,9 @@ public class CartDAO {
 		return list;
 	}
 	
+	public void deleteAllCart(int user_num) {
+		sqlsession.delete("Cart.deleteAllCart", user_num);
+	}
 }
 
 

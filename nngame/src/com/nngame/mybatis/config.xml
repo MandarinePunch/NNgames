@@ -36,5 +36,6 @@
 		<mapper resource="com/nngame/sql/store.xml" />
 		<mapper resource="com/nngame/sql/cart.xml" />
 		<mapper resource="com/nngame/sql/gamedetail.xml" />
+		<mapper resource="com/nngame/sql/payment.xml" />
 	</mappers>
 </configuration>
