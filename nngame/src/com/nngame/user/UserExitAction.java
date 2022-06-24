@@ -47,7 +47,7 @@ public class UserExitAction implements Action{
 				response.setContentType("text/html; charset=utf-8");
 				out.println("<script language='javascript'>");
 				out.println("alert('패스워드가 일치하지 않습니다.')");
-				out.println("location.replace('/myPage.jsp');");
+				out.println("location.replace('/user/myPage');");
 				out.print("</script>");
 				out.flush();
 			} catch (IOException e) {

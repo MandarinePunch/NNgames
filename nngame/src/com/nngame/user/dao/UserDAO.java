@@ -80,4 +80,11 @@ public class UserDAO {
 		sqlsession.update("Users.modPw", datas);
 		System.out.println("비밀번호 변경 성공");
 	}
+	
+	public String isLinkUser(String user_email) {
+		String result = "";
+		result = sqlsession.selectOne("Users.islinked", user_email);
+		
+		return  result;
+	}
 }

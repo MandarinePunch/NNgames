@@ -16,7 +16,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 <!-- Project CSS -->
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="/css/style.css" />
 
 <title>Login</title>
 </head>
@@ -49,18 +49,29 @@
 		
 		<!-- 추가 기능 -->
 		<div class="login__a-link">
-			<a href="findpw.jsp">비밀번호 찾기</a> <span>|</span> <a href="joinus.jsp">회원가입</a>
+			<a href="/user/findpw">비밀번호 찾기</a> <span>|</span> <a href="/user/join">회원가입</a>
 		</div>
 
 		<!-- 연동 로그인 -->
 		<div class="row">
 			<div class="login__line">간편 로그인</div>
 			<div class="col login__simple-login">
-				<!-- Google Login -->
-				<a href=""><img src="/img/icon/login/google.png"></a>
-								
+				<!-- Naver Login -->
+				<a id="naverIdLogin_loginButton" href="javascript:void(0)"><img src="/img/icon/login/naver.png"></a>
+				
 				<!-- Kakao Login --> 
 				<a href="javascript:kakaoLogin();"><img src="/img/icon/login/kakao.png"></a>
+				
+				<!-- Naver Login form -->
+				<form action="/user/naverLogin.io" id="naverfrm" onsubmit="return false" method="get">
+					<input type="hidden" name="navernick" id="naver_nick">
+					<input type="hidden" name="naverEmail" id="naver_email">
+					<input type="hidden" name="naverage" id="naver_age">
+					<input type="hidden" name="naverbirth" id="naver_birth">
+					<input type="hidden" name="naverphone" id="naver_phone">
+				</form>
+				
+				<!-- Kakao Login form -->
 				<form action="/user/kakaoLogin.io" id="kakaofrm" onsubmit="return false" method="post">
 					<input type="hidden" name="kakaonick" id="kakao_nick">
 					<input type="hidden" name="kakaoEmail" id="kakao_email">
@@ -76,7 +87,9 @@
 
 	<!-- 로그인 폼 Script -->
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 	<script src="/js/login/login.js"></script>
+	
 	<!-- Bootstrap 옵션 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

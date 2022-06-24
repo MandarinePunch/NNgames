@@ -19,7 +19,7 @@ public class UserKakaoLoginAction implements Action{
 		UserDAO udao = new UserDAO();
 		UserDTO udto = new UserDTO();
 		
-		String usernick = request.getParameter("kakaonick");
+		String usernick = "Kakao_" + request.getParameter("kakaonick");
 		String userid = request.getParameter("kakaoEmail");
 		String userpw = "ka";
 		String age = request.getParameter("kakaoage");
@@ -96,7 +96,9 @@ public class UserKakaoLoginAction implements Action{
 
 			if (udao.login(userid, userpw)) { // 로그인 성공
 				System.out.println("로그인 성공");
-
+				udto = udao.getUserData(userid);
+				udto.setUser_pwd("ka");
+				
 				request.getSession().setAttribute("udto", udto);
 
 				out = response.getWriter();
@@ -115,7 +117,7 @@ public class UserKakaoLoginAction implements Action{
 					response.setContentType("text/html; charset=utf-8");
 					out.println("<script language='javascript'>");
 					out.println("alert('연동 회원가입이 완료되었습니다. 다시로그인 해주세요.')");
-					out.println("location.replace('/login/login.jsp');");
+					out.println("location.replace('/user/login');");
 					out.print("</script>");
 					out.flush();
 

@@ -37,4 +37,9 @@
 	<update id="modPw" parameterType="hashmap">
 		UPDATE USERINFO SET USER_PWD = #{user_pwd} WHERE USER_EMAIL = #{user_email}
 	</update>
+	
+	<!-- 연동 유저 판별 -->
+	<select id="islinked" parameterType="String" resultType="String">
+		SELECT USER_PWD FROM USERINFO WHERE USER_EMAIL = #{user_email}
+	</select>
 </mapper>

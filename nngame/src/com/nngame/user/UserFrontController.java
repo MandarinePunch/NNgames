@@ -44,6 +44,21 @@ public class UserFrontController extends HttpServlet {
 			new UserModPwAction().execute(request, response);
 		} else if(requestURI.equals("/user/kakaoLogin.io")) {
 			new UserKakaoLoginAction().execute(request, response);
+		} else if(requestURI.equals("/user/naverLogin.io")) {
+			new UserNaverLoginAction().execute(request, response);
+		}
+		// url mapping
+		else if(requestURI.equals("/user/login")) {
+			forward = new ActionForward(false, "/login/login.jsp");
+		}
+		else if(requestURI.equals("/user/findpw")) {
+			forward = new ActionForward(false, "/login/findpw.jsp");
+		}
+		else if(requestURI.equals("/user/join")) {
+			forward = new ActionForward(false, "/login/joinus.jsp");
+		}
+		else if(requestURI.equals("/user/myPage")) {
+			forward = new ActionForward(false, "/myPage.jsp");
 		}
 		
 		if(forward != null) {			
