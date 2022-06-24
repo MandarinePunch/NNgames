@@ -17,7 +17,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 <!-- Project CSS -->
-<link rel="stylesheet" href="./css/style.css" />
+<link rel="stylesheet" href="/css/style.css" />
 
 <title>내 정보</title>
 </head>
@@ -112,7 +112,7 @@
 							<input type="hidden" name="user_email" value="${sessionScope.udto.getUser_email() }">
 							<input type="password" name="user_pwd" class="form-control" id="mod_outpass" placeholder="현재 비밀번호 입력" value="${sessionScope.udto.getUser_pwd() }">
 							<div style="text-align: center;">
-								<input type="submit" class="btn submit-btn"	style="width: 40%; margin: 15px 0;" value="수정하기">
+								<input type="submit" class="btn submit-btn"	style="width: 40%; margin: 15px 0;" value="탈퇴하기">
 							</div>
 						</div>
 					</div>

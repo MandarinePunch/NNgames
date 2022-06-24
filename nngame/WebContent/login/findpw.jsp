@@ -16,7 +16,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 <!-- Project CSS -->
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="/css/style.css" />
 
 <title>패스워드 찾기</title>
 </head>

@@ -32,7 +32,7 @@ public class UserModPwAction implements Action{
 				response.setContentType("text/html; charset=utf-8");
 				out.println("<script language='javascript'>");
 				out.println("alert('비밀번호가 변경되었습니다.')");
-				out.println("location.replace('/myPage.jsp');");
+				out.println("location.replace('/user/myPage');");
 				out.print("</script>");
 				out.flush();
 			} else {
@@ -42,7 +42,7 @@ public class UserModPwAction implements Action{
 				response.setContentType("text/html; charset=utf-8");
 				out.println("<script language='javascript'>");
 				out.println("alert('현재 비밀번호가 일치하지 않습니다.')");
-				out.println("location.replace('/myPage.jsp');");
+				out.println("location.replace('/user/myPage');");
 				out.print("</script>");
 				out.flush();
 			}
@@ -50,7 +50,7 @@ public class UserModPwAction implements Action{
 			System.out.println("Pw변경 PrintWriter 에러");
 		}
 		
-		forward.setPath("/myPage.jsp");
+		forward.setPath("/user/myPage");
 		forward.setRedirect(true);
 		return forward;
 	}
