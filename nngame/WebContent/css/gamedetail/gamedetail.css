@@ -39,6 +39,12 @@
 	opacity: 0.3;
 }
 
+/* 배너 이미지 조정 */
+.detail__banner img{
+	width: 480px;
+	height: 240px;
+}
+
 .detail__small-img img:hover {
 	opacity: 1;
 	cursor: pointer;
@@ -49,6 +55,10 @@
 /* 구매, 장바구니.. 박스 배너 */
 .detail__info-box img {
 	border-radius: 10px;
+}
+
+.detail__btn-box{
+	margin-bottom: 10px;
 }
 
 /* 게임상세 구매, 장바구니 버튼 */

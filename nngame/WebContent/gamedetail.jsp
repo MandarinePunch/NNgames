@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!Doctype html>
 <html lang="en">
 <head>
@@ -12,68 +14,94 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 
-<link rel="stylesheet" href="./css/style.css" />
+<link rel="stylesheet" href="/css/style.css" />
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
 	<%@ include file="/tags/header.jsp"%>
+	
 	<!-- main -->
+	<c:set var="gamedetail" scope="request" value="${gameDetail }" />
+	<c:set var="success" scope="request" value="${success }" />
+	
+	<c:choose>
+		<c:when test="${success == true }">
+			<script>
+				alert("장바구니에 추가되었습니다.");
+			</script>
+		</c:when>
+		<c:when test="${success == false }">
+			<script>
+				alert("이미 있는 게임입니다.");
+			</script>
+		</c:when>
+	</c:choose>
+	
 	<div class="container detail">
-		<h1 class="detail__title">TEKKEN 7</h1>
+		<h1 class="detail__title">${gamedetail.gameDTO.game_name }</h1>
 		<div class="detail__main">
 			<!-- 슬라이드 이미지 구현구역  -->
 			<div class="detail__main-img">
 				<!--대형 인게임 이미지 출력위치  -->
 				<div class="detail__big-img">
 					<p>
-						<img src="./img/games/action/tekken/action-screen-tekken1.jpg">
+						<img src="/img/games/${gamedetail.imageDTO.image_screen1 }">
 					</p>
 					<p style="display: none;">
-						<img src="./img/games/action/tekken/action-screen-tekken2.jpg">
+						<img src="/img/games/${gamedetail.imageDTO.image_screen2 }">
 					</p>
 					<p style="display: none;">
-						<img src="./img/games/action/tekken/action-screen-tekken3.jpg">
+						<img src="/img/games/${gamedetail.imageDTO.image_screen3 }">
 					</p>
 					<p style="display: none;">
-						<img src="./img/games/action/tekken/action-screen-tekken4.jpg">
+						<img src="/img/games/${gamedetail.imageDTO.image_screen4 }">
 					</p>
 				</div>
 
 				<!-- 미니이미지 출력위치  -->
 				<div class="detail__small-img">
 					<div class="detail__small-thumb">
-						<img src="./img/games/action/tekken/action-screen-tekken1.jpg">
+						<img src="/img/games/${gamedetail.imageDTO.image_screen1 }">
 					</div>
 					<div class="detail__small-thumb">
-						<img src="./img/games/action/tekken/action-screen-tekken2.jpg">
+						<img src="/img/games/${gamedetail.imageDTO.image_screen2 }">
 					</div>
 					<div class="detail__small-thumb">
-						<img src="./img/games/action/tekken/action-screen-tekken3.jpg">
+						<img src="/img/games/${gamedetail.imageDTO.image_screen3 }">
 					</div>
 					<div class="detail__small-thumb">
-						<img src="./img/games/action/tekken/action-screen-tekken4.jpg">
+						<img src="/img/games/${gamedetail.imageDTO.image_screen4 }">
 					</div>
 				</div>
 			</div>
 
 			<!-- 게임 배너 메뉴바  -->
 			<div class="d-grid detail__info-box">
-				<div>
-					<img src="./img/games/action/tekken/action-banner-tekken.jpg">
+				<div class="detail__banner">
+					<img src="/img/games/${gamedetail.imageDTO.image_banner }">
 				</div>
-				<h5>가격 : \40000</h5>
-				<div class="detail__btn-box">
-					<button class="btn submit-btn detail__btn" onclick="location.href='/payment/payment.jsp'">바로 구매</button>
-				</div>
-				<div class="detail__btn-box">
-					<button class="btn submit-btn detail__btn">장바구니에 담기</button>
-				</div>
-				<div class="detail__info-text">장르 : 액션</div>
-				<div class="detail__info-text">연령 : 15세</div>
-				<div class="detail__info-text">개발사 : CAPCOM</div>
-				<div class="detail__info-text">출시일 : 2017-06-02</div>
+				<c:choose>
+					<c:when test="${gamedetail.gameDTO.game_price == 0 }">
+						<h5>가격 : 무료</h5>
+					</c:when>
+					<c:otherwise>
+						<h5>가격 : ${gamedetail.gameDTO.game_price }원</h5>
+					</c:otherwise>
+				</c:choose>
+					<form action="/cart/insert" method="post" id="gamePaymentForm">
+						<div class="detail__btn-box">
+							<button type="button" class="btn submit-btn detail__btn" onclick="goToPay(${gamedetail.gameDTO.game_price})">바로 구매</button>
+						</div>
+						<div class="detail__btn-box">
+							<button type="button" class="btn submit-btn detail__btn" onclick="insertCart(${gamedetail.gameDTO.game_num})">장바구니에 담기</button>
+						</div>	
+					</form>
+				<div class="detail__info-text">장르 : ${gamedetail.cateDTO.cate_genre }</div>
+				<div class="detail__info-text">연령 : ${gamedetail.gameDTO.game_agelimit }세</div>
+				<div class="detail__info-text">개발사 : ${gamedetail.gameDTO.game_developer }</div>
+				<div class="detail__info-text">출시일 : ${fn:substring(gamedetail.gameDTO.game_release, 0, 10) }</div>
 			</div>
 		</div>
 
@@ -82,74 +110,18 @@
 			<h1>[게임 상세 설명]</h1>
 			<div class="detail__description-title">게임에 대해</div>
 			<div class="detail__description-info">
-				미시마 일가의 길고 긴 전설적인 싸움의 끝과, 이 잔혹한 싸움에 감춰져있는 비밀이 밝혀집니다. Unreal
-				Engine 4로 개발되어, 유명 격투 게임 철권이 더욱 충실한 스토리와 영화같은 연출, 그리고 긴장감 넘치는 배틀로
-				친구나 다른 게이머들과 즐길 수 있는 게임으로 돌아옵니다. 사랑, 복수, 긍지. 모든 사람은 싸워야할 이유를 가지고 있다.
-				가치관은 강하거나 약하거나 상관없이 우리를 정의하고, 사람으로서 살아가도록 만든다. 이 동기에 선악은 없으며 우리가 어떠한
-				행동을 취하느냐가 있을 뿐이다.
+				${gamedetail.gameDTO.game_detail }
 			</div>
 			<div class="detail__description-title">요구사양</div>
 			<div class="detail__description-info">
-				최소: 64비트 프로세서와 운영 체제가 필요합니다<br>
-				운영체제: Windows 7/8/10 (64-bit OS required)<br>
-				프로세서: Intel Core i3-4160 @ 3.60GHz or equivalent<br>
-				메모리: 6GB RAM<br>
-				그래픽: NVIDIA GeForce GTX 660 2GB, GTX 750Ti 2GB, or equivalent<br>
-				DirectX: 버전 11<br>
-				네트워크: 초고속 인터넷 연결<br>
-				저장공간: 60 GB<br>
-				사용 가능 공간 사운드카드: DirectX compatible soundcard or onboard chipset
+				${gamedetail.gameDTO.game_require }
 			</div>
 		</div>
 	</div>
 
 	<%@ include file="/tags/footer.jsp"%>
 
-	<script>
-		$(document).ready(function() {
-			var current = 0;
-			var thumbListSize = 6;
-			var thumbnail = $('.detail__small-img');
-			//var prev = thumbnail.find('.left');
-			//var next = thumbnail.find('.right');
-			//var container = thumbnail.find('ul');
-			//var containerWidth = thumbnail.find('.container').width();
-			var thumb = thumbnail.find('.detail__small-thumb');
-			//var maxSize = thumb.size();
-			var image = $('.detail__big-img p');
-
-			/*  이미지 클릭시 발생 */
-			thumb.click(function() {
-				image.hide();
-				var i = $(this).index();
-				image.eq(i).show();
-			});
-
-			/* 슬라이드 추가시 주석처리 해제  */
-			// 				/* 다음키 클릭시 발생  */
-			// 				next.click(function(){
-			// 					if (current < maxSize / thumbListSize - 1) {
-			// 						current++;
-			// 					} else {
-			// 						current = 0;
-			// 					}
-			// 					listMove();
-			// 				});
-			// 				/* 이전키 클릭시 발생  */
-			// 				prev.click(function(){
-			// 					if (current > 0) {
-			// 						current--;
-			// 					} else {
-			// 						current = maxSize / thumbListSize -1;
-			// 					}
-			// 					listMove();
-			// 				});
-			// 				function listMove(){
-			// 					var tl = containerWidth * current * -1;
-			// 					container.stop().animate({left:tl}, 400);
-			// 				}
-		});
-	</script>
+	<script src="/js/gamedetail/gamedetail.js"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

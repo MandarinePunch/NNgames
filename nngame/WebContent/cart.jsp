@@ -81,7 +81,8 @@
 							</div>
 						</div>
 						<div class="d-grid gap-2">
-							<button class="btn submit-btn" type="button" onclick="location.href='/payment/payment.jsp'">구매하기</button>
+							<%-- totalPrice를 pay에 넘겨줌 --%>
+							<button class="btn submit-btn" type="button" onclick="goToPay(${totalPrice})">구매하기</button>
 						</div>
 					</div>
 				</c:otherwise>
@@ -98,6 +99,13 @@
 			
 			form.action = "/cart/delete?cart_num=" + cartnum;
 			form.submit();
+		}
+		
+		function goToPay(price){
+			const payForm = document.getElementById("gamePaymentForm");
+			
+			payForm.action = "/payment/pay?game_price=" + price;
+			payForm.submit();
 		}
 	</script>	
 	

@@ -1,4 +1,4 @@
-package com.nngame.cart;
+package com.nngame.gamedetail;
 
 import java.io.IOException;
 
@@ -22,8 +22,8 @@ import com.nngame.user.UserLogOutAction;
 import com.nngame.user.UserLoginOkAction;
 import com.nngame.user.UserPwFindAction;
 
-@WebServlet(name = "CartFrontController", urlPatterns = "/cart/*")
-public class CartFrontController extends HttpServlet{
+@WebServlet(name = "GameDetailFrontController", urlPatterns = "/game/*")
+public class GameDetailFrontController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,24 +31,18 @@ public class CartFrontController extends HttpServlet{
 	}
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
 	
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String requestURI = request.getRequestURI();
 		ActionForward forward = null;
 		
-		if(requestURI.equals("/cart/List")) {			// 장바구니 게임 리스트
-			forward = new CartGameListAction().execute(request, response);
+		if(requestURI.equals("/game/detail")) {			
+			forward = new GameDetailShowAction().execute(request, response);
 			
-		} else if(requestURI.equals("/cart/delete")) {	// 선택 게임 삭제
-			forward = new CartDeleteAction().execute(request, response);
-			
-		} else if(requestURI.equals("/cart/insert")) {
-			forward = new CartInsertAction().execute(request, response);
-			
-		}
+		} 
 		
 		if(forward != null) {
 			if(forward.isRedirect()) {

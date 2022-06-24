@@ -43,4 +43,13 @@
 		DELETE FROM CART c WHERE CART_NUM = #{CART_NUM }
 	</delete>
 	
+	<!-- 장바구니에 게임 넣기 -->
+	<insert id="insertCart" parameterType="hashmap">
+		INSERT INTO CART VALUES(seq_cart_no.nextval, sysdate, #{game_num}, #{user_num})
+	</insert>
+	
+	<!-- 중복체크를 위한 gamenum 가져오기 -->
+	<select id="getGameNum" parameterType="_int" resultType="_int">
+		SELECT GAME_NUM FROM CART c WHERE USER_NUM = #{user_num}
+	</select>
 </mapper>

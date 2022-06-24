@@ -107,7 +107,7 @@
 				<div class="row row-cols-1 row-cols-md-6 g-4 store-row">
 					<c:forEach var="list" items="${storegamelist }">
 						<div class="col">
-							<a class="card h-100 store-card" href="/gamedetail.jsp"> 
+							<a class="card h-100 store-card" href="/game/detail?game_num=${list.gameDTO.game_num }"> 
 								<img src="/img/games/${list.imageDTO.image_main }" class="card-img-top" alt="...">
 								<div class="card-body store-card-body">
 									<h5 class="card-title">${list.gameDTO.game_name } </h5>
