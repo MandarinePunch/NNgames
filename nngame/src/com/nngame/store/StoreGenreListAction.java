@@ -21,9 +21,15 @@ public class StoreGenreListAction implements Action{
 		// 장르별 게임수 가져오기
 		int totalCnt = sdao.getGenreCnt(genre);
 		
+		
 		// 보내기
+		// 게임수
 		request.setAttribute("totalCnt", totalCnt);
-		request.setAttribute("genrelist",sdao.getGenreList(genre));
+		
+		// 장르게임리스트
+		
+		
+		
 		
 		// forward방식으로 보내기
 		forward.setRedirect(false);

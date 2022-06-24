@@ -104,9 +104,9 @@
 		</section>
 		<!-- 게임 썸네일 -->
 		<c:choose>
+			<%--모든게임 가져오기 --%>
 			<c:when test="${storegamelist != null and fn:length(storegamelist) > 0 }">
 				<div class="row row-cols-1 row-cols-md-6 g-4 store-row">
-				
 					<c:forEach var="list" items="${storegamelist }">
 						<div class="col">
 							<a class="card h-100 store-card" href="/gamedetail.jsp"> 
@@ -118,10 +118,9 @@
 							</a>
 						</div>
 					</c:forEach>
-						
 				</div>
 			</c:when>
-			
+			<%--장르별게임 가져오기 --%>
 			<c:when test="${genrelist != null and fn:length(genrelist) > 0 }">
 				<div class="row row-cols-1 row-cols-md-6 g-4 store-row">
 					<c:forEach var="glist" items="${genrelist }">
@@ -137,7 +136,7 @@
 					</c:forEach>	
 				</div>
 			</c:when>
-			
+			<%--게임없을때 --%>
 			<c:otherwise>
 				<div>
 					<h3>찾으시는 게임 목록이 없습니다.</h3>
