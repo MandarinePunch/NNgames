@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- typealias 자주쓰는거 보기 편하게 이름 바꾸기 -->
+	<typeAliases>
+		<!-- 바꿔줄 명칭이 더 있다면 여기에 추가해 주세요. -->
+		<typeAlias type="com.nngame.support.dao.SupportDTO" alias="SupportDTO"/>
+		<typeAlias type="com.nngame.user.dao.UserDTO" alias="UserDTO"/>
+		<typeAlias type="com.nngame.store.dao.StoreDTO" alias="StoreDTO"/>
+		<typeAlias type="com.nngame.game.dto.CategoryDTO" alias="CategoryDTO"/>
+		<typeAlias type="com.nngame.game.dto.GameDTO" alias="GameDTO"/>
+		<typeAlias type="com.nngame.game.dto.ImageDTO" alias="ImageDTO"/>
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+				<property name="username" value="nngame" />
+				<property name="password" value="1234" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- mapper 설정 -->
+	<mappers>
+		<!-- 다른 mapper들은 여기에 추가 작성해 주세요. -->
+		<mapper resource="com/nngame/sql/support.xml" />
+		<mapper resource="com/nngame/sql/users.xml" />
+		<mapper resource="com/nngame/sql/store.xml" />
+	</mappers>
+</configuration>

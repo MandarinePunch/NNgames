@@ -1,0 +1,100 @@
+/* 게임 상세 전체 박스 */
+.detail {
+	color: white;
+}
+
+/* 게임 상세 타이틀(게임 제목) */
+.detail__title {
+	margin: 20px 0;
+}
+
+/* ////////////////////////////////////////// */
+
+/* 게임 상세 상단 박스(image & 구매, 장바구니..) */
+.detail__main {
+	display: flex;
+	justify-content: space-between;
+	min-height: 550px;
+}
+
+/* 큰 이미지 사이즈  */
+.detail__big-img img {
+	width: 806px;
+	height: 453px;
+	border-radius: 10px;
+}
+
+/* 미니 이미지  위치 조정 */
+.detail__small-img {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 15px;
+}
+
+/* 미니 이미지 사이즈*/
+.detail__small-img img {
+	width: 192px;
+	height: 108px;
+	border-radius: 10px;
+	opacity: 0.3;
+}
+
+.detail__small-img img:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+/* ////////////////////////////////////////// */
+
+/* 구매, 장바구니.. 박스 배너 */
+.detail__info-box img {
+	border-radius: 10px;
+}
+
+/* 게임상세 구매, 장바구니 버튼 */
+.detail__btn {
+	width: 100%;
+	height: 50px;
+}
+
+/* 장르, 연령 등의 info text */
+.detail__info-text {
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+	border-bottom: 1px solid #2A2A2A;
+}
+
+/* ////////////////////////////////////////// */
+
+/* [게임 상세 설명] text */
+.detail__description h1 {
+	text-align: center;
+	margin: 50px 0;
+}
+
+/* 게임설명, 요구사양 */
+.detail__description-title {
+	border-bottom: 1px solid #2A2A2A;
+	font-size: 20px;
+	padding-bottom: 5px;
+}
+
+/* 게임설명 정보, 요구사양 정보 */
+.detail__description-info {
+	color: rgba(255, 255, 255, 0.5);
+	margin-top: 5px;
+	margin-bottom: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

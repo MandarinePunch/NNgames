@@ -1,0 +1,91 @@
+@charset "UTF-8";
+.cart_mycart{
+	flex:1;
+	text-align: center;
+	color: white;
+	font-size: 13px;
+}
+
+/* 게임 내역 및 가격 총액을 감싸는 박스(중앙정렬을 위해 사용) */
+.cart-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+}
+
+.cart-main {
+	width: 1300px;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	color: white;
+	min-height: 600px;
+}
+
+/* 장바구니에 담긴 게임 css */
+.cart-box {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.cart-box>input {
+	margin-right: 20px;
+}
+
+.cart-box__game {
+	display: flex;
+	width: 800px;
+	height: 100px;
+	background-color: #2A2A2A;
+	border-radius: 10px;
+}
+
+.cart-box__image img {
+	width: 200px;
+	/* 이미지를 min-width로 고정 */
+	min-width: 200px;
+	height: 100px;
+}
+
+.cart-box__info {
+	width: 100%;
+	padding: 10px;
+}
+
+/* 삭제 버튼 css */
+.cart-box__delete {
+	float: right;
+}
+
+.cart-box__del-button {
+	background: none;
+	border: none;
+	color: #e6e6e270;
+}
+
+/* hover -> 마우스 커서 올릴 때 (오버) 효과 */
+.cart-box__del-button:hover {
+	color: white;
+	border-bottom: 1px solid white;
+}
+
+/* 가격 총액 */
+.cart-pay {
+	width: 300px;
+}
+
+.cart-pay div, .cart-pay h2 {
+	margin-bottom: 20px;
+}
+
+.cart-pay__price {
+	display: flex;
+	justify-content: space-between;
+}
+
+.cart-pay__price:last-child {
+	padding-top: 20px;
+	border-top: 1px solid #2A2A2A;
+}
+

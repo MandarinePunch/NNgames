@@ -1,0 +1,62 @@
+/* 회원가입 전체 box */
+.join {
+	width: 30%;
+	color: white;
+}
+
+/* 회원가입 간편로그인 text 배경 line */
+.join__line {
+	display: flex;
+	flex-basis: 100%;
+	align-items: center;
+	color: rgba(255, 255, 255, 1);
+	font-size: 14px;
+	margin: 8px 0px;
+}
+
+.join__line::before {
+	content: "";
+	flex-grow: 1;
+	margin: 0px 16px;
+	background: rgba(255, 255, 255, 0.35);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+}
+
+.join__line::after {
+	content: "";
+	flex-grow: 1;
+	margin: 0px 16px;
+	background: rgba(255, 255, 255, 0.35);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+}
+
+/* 회원가입시 이용약관 msg */
+.join__agree-msg{
+	text-align: center;
+	font-size: 10px;
+	margin-bottom: 5px;
+}
+
+/* 회원가입 submit 버튼 */
+.join__submit-btn{
+	width: 100%;
+}
+
+/* 간편 가입 아이콘 box */
+.join__simple-join{
+	text-align: center;
+}
+
+/* 간편 가입 아이콘 img */
+.join__simple-join img{
+	margin: 0 10px;
+}
+
+/* input 비었을 경우 예외처리 문구 */
+.join_pred {
+	color: red;
+}

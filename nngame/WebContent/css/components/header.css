@@ -1,0 +1,37 @@
+/* header nav item (hover시 노란색 줄뜨는 트릭을 위해..) */
+.header__nav-item {
+	border-top: 2px solid #121212;
+	border-bottom: 2px solid #121212;
+	margin-left: 30px;
+}
+
+/* fontawesome icon size */
+.header__nav-item i {
+	font-size: 20px;
+}
+
+/* hover시 밑에 노란 줄 */
+.header__nav-item:hover{
+	border-bottom-color: #ffe403;
+}
+
+/* 메인 로고 크기 */
+.header__nav-brand img {
+	width: 65px;
+	height: 65px;
+}
+
+/* header search바 */
+.header__search {
+	color: white;
+	outline: none;
+	border: none;
+	border-radius: 0px;
+	border-bottom: 1px solid #414040;
+	background-color: #121212;
+	transition: border-color 0.2s ease-in-out;
+}
+
+.header__search:focus {
+	border-color: #e6e6e6;
+}

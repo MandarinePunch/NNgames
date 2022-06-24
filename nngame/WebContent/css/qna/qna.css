@@ -1,0 +1,160 @@
+/* ///////////////////////////////////////// */
+/* - qna 글 리스트 - */
+
+/* qna 리스트 전체 박스 */
+.qna__board {
+	margin-top: 100px;
+	min-height: 500px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+}
+
+/* <h2>고객지원</h2> */
+.qna__board-title{
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+/* qna list 진행상황 */
+.qna__List-progress{
+	color : #ffe403;
+}
+
+/* qna list 제목 */
+.qna__List-title{
+	text-align: left;
+}
+
+/* 글 리스트 테이블 */
+.qna__table {
+	text-align: center;
+	width: 1000px;
+}
+/* ///////////////////////////////////////// */
+/* - 페이징 버튼 - */
+
+/* 페이징 전체 박스 */
+.qna__paging{
+	display: flex;
+	justify-content: center;
+}
+
+/* 페이징 넘버, 선택된 페이지, 이동 버튼 */
+.qna__paging-num,
+.qna__paging-selected,
+.qna__paging-move {
+	box-sizing: border-box;
+	padding-top: 5px;
+	display: block;
+	width: 45px;
+	height: 35px;
+	margin-right: 5px;
+	border-radius: 5px;
+}
+
+/* 페이지 이동 버튼의 icon */
+.qna__paging-move > i {
+	color : #ffe403;
+}
+
+/* 페이지 넘버 hover시 */
+.qna__paging-num:hover{
+	background-color: #414040;
+}
+
+/* 선택된 페이지 컬러 */
+.qna__paging-selected{
+	color : #414040;
+}
+/* ///////////////////////////////////////// */
+/* - qna 상세, 작성, 수정  - */
+
+/* qna_detail & qna_write & qna_modify */
+.qna__write {
+	margin-top: 60px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+/* 문의 형태 select box */
+.qna__form-select {
+	width: 600px;
+}
+
+/* 각 입력 폼(문의, 제목, 내용..) */
+.qna__write-box {
+	margin-bottom: 20px;
+}
+
+/* 각 입력 폼의 title */
+.qna__write-title{
+	color: white;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+/* qna content 카운트 */
+.qna__comment-count{
+	color:rgba(255,255,255,0.5);
+	float: right;
+}
+
+/* 관리자 계정 만들시
+.qna__progress{
+	color: white;
+	margin-bottom: 20px;
+}
+
+.qna__progress-table{
+	width: 600px;
+	background-color: rgba(255,255,255,0.2);
+	border-radius: 10px;
+}
+
+.qna__progress-text{
+	margin-right: 20px;
+}
+ */
+
+/* form으로 감싸진 버튼들 정렬을 위해 */
+.qna__btn-box{
+	display: flex;
+}
+
+/* qna 버튼 모음 박스 (목록, 확인...)*/
+.qna__btn-box form{
+	margin-left: 5px;
+}
+/* ///////////////////////////////////////// */
+/* 문의 내용(h1) */
+.qna__detail-h1{
+	color: white;
+	margin-bottom: 60px;
+}
+
+/* 글 상세 박스 공통영역 */
+.qna__detail-title,
+.qna__detail-type,
+.qna__detail-content{
+	width: 600px;
+	background-color: #202020;
+	border-radius: 5px;
+	padding: 12px;
+	color: rgba(255,255,255,0.7);
+}
+
+/* 글 상세 타입 및 타이틀 */
+.qna__detail-title,
+.qna__detail-type{
+	height: 50px;
+}
+
+/* 글 상세 내용 */
+.qna__detail-content{
+	height: 300px;
+}
+/* ////////////////////////////////////////// */

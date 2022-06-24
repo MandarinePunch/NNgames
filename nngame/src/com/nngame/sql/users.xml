@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Users">
+	<!-- Join -->
+	<insert id ="join" parameterType="UserDTO">
+		INSERT INTO USERINFO VALUES ( SEQ_USER_NO.nextval, #{user_email}, #{user_pwd}, #{user_nickname}, #{user_phone}, #{user_birth}, SYSDATE )
+	</insert>
+	
+	<!-- Login -->
+	<select id = "login" parameterType="hashmap" resultType="_int">
+		SELECT COUNT(*) FROM USERINFO WHERE USER_EMAIL = #{user_email} and USER_PWD = #{user_pwd}
+	</select>
+	
+	<!-- UserData 조회 -->
+	<select id="getUserDTO" parameterType="string" resultType="UserDTO">
+        SELECT USER_NUM, USER_EMAIL, USER_NICKNAME, USER_PHONE, USER_BIRTH, USER_JOINDATE FROM USERINFO WHERE USER_EMAIL = #{user_email}
+	</select>
+	
+	<!-- Find PW -->
+	<select id = "findpw" parameterType="String" resultType="String">
+		SELECT USER_PWD FROM USERINFO WHERE USER_EMAIL = #{user_email}
+	</select>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM USERINFO WHERE USER_EMAIL = #{user_email}
+	</delete>
+	
+	<!-- 닉네임,전화번호 변경 -->
+	<update id="modUser" parameterType="hashmap">
+		UPDATE USERINFO SET USER_NICKNAME = #{user_nickname}, USER_PHONE = #{user_phone} WHERE USER_EMAIL = #{user_email}
+	</update>
+	
+	<!-- 패스워드 변경 -->
+	<update id="modPw" parameterType="hashmap">
+		UPDATE USERINFO SET USER_PWD = #{user_pwd} WHERE USER_EMAIL = #{user_email}
+	</update>
+</mapper>

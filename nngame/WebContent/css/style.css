@@ -1,0 +1,51 @@
+/* css reset */
+@import "./config/reset.css";
+
+/* footer & header */
+@import "./components/header.css";
+@import "./components/footer.css";
+
+/* main  */
+@import "./main/mainscreen.css";
+
+/* 고객지원 */
+@import "./qna/qna.css";
+
+/* 스토어 */
+@import "./store/store.css";
+
+/* 로그인 & 회원가입 */
+@import "./user/login.css";
+@import "./user/joinus.css";
+
+/* 장바구니 */
+@import "./cart/cart.css";
+
+/* 결제창 */
+@import "./payment/payment.css";
+@import "./payment/paycomplete.css";
+
+/* 게임상세 */
+@import "./gamedetail/gamedetail.css";
+
+/* 라이브러리 */
+@import "./library/library.css";
+
+/* 마이 페이지*/
+@import "./user/mypage.css";
+
+/* 경고 페이지 */
+@import "./warning/warning.css";
+
+/* 전체 바디 컬러 */
+body { background-color: #121212; }
+
+/* 전체 버튼색 통일 */
+.submit-btn { background-color: #ffe403; color: black; font-family: Malgun Gothic; }
+
+/* 버튼 hover시  */
+.submit-btn:hover { background-color: #ffe40370; color: white; }
+
+/* search 버튼 배경색 및 hover시 */
+.btn-outline-success { color: #ffe403; border-color: #ffe403; }
+.btn-outline-success:hover { background-color: #ffe403; }

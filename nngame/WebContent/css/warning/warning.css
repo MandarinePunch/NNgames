@@ -1,0 +1,16 @@
+.warning{
+	min-height: 600px;	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.warning__title{
+	color:white;
+	margin-bottom: 100px;
+}
+
+.login-warning__btn{
+	font-size: 20px;
+}

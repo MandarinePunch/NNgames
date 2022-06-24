@@ -1,0 +1,60 @@
+/* login 전체 박스 */
+.login {
+	margin-top: 100px;
+	width: 30%;
+	color: white;
+	min-height: 500px;
+}
+
+/* login 회원가입 & 비번찾기 */
+.login__a-link{
+	padding: 10px;
+	text-align: center;
+}
+
+.login__a-link span{
+	color: rgba(200,200,200,0.5);
+}
+
+/* 간편 로그인 text 및 배경 선 */
+.login__line {
+	display: flex;
+	flex-basis: 100%;
+	align-items: center;
+	color: rgba(255, 255, 255, 1);
+	font-size: 14px;
+	margin: 8px 0px;
+}
+
+.login__line::before {
+	content: "";
+	flex-grow: 1;
+	margin: 0px 16px;
+	background: rgba(255, 255, 255, 0.35);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+}
+
+.login__line::after {
+	content: "";
+	flex-grow: 1;
+	margin: 0px 16px;
+	background: rgba(255, 255, 255, 0.35);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+}
+
+/* 간편 로그인 icon */
+.login__simple-login{
+	text-align: center;
+}
+
+.login__simple-login img{
+	margin: 10px;
+}
+
+.login_pred {
+	color: red;
+}

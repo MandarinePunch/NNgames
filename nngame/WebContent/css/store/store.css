@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+/* store page*/
+/* 아이콘바 간격  & 정렬기준 간격*/
+.store-nav { margin-left: 15px; }
+/* 아이콘바 넓이 */
+.store-icon-width { width: 74px; }
+.store-icon-width:hover { border-radius: 50%; background-color: #202020; }
+/* store-active가 적용됐을 때 아이콘바 모양 */
+.store-active { border-radius: 50%;  background-color: #202020; }
+/* 아이콘바 이미지 넣기 */
+.nav-link div { background: no-repeat center; height: 30px; margin: 0 auto; }
+.nav-link div.store-icon-all { width: 30px; background-image: url(../../img/icon/genre/all.png); }
+.nav-link div.store-icon-action { width: 36px; background-image: url(../../img/icon/genre/action.png); }
+.nav-link div.store-icon-indi { width: 30px; background-image: url(../../img/icon/genre/indi.png); }
+.nav-link div.store-icon-rpg { width: 30px; background-image: url(../../img/icon/genre/rpg.png); }
+.nav-link div.store-icon-horror { width: 31px; background-image: url(../../img/icon/genre/horror.png); }
+.nav-link div.store-icon-sports { width: 30px; background-image: url(../../img/icon/genre/sports.png); }
+.nav-link div.store-icon-fps { width: 30px; background-image: url(../../img/icon/genre/fps.png); }
+.nav-link div.store-icon-strategy { width: 30px; background-image: url(../../img/icon/genre/strategy.png); }
+/* 아이콘바 글씨 */
+.nav-link p.store-icon-p { color: #fff; font-size: 12px; text-align: center; padding: 5px 0; }
+/* 정렬기준 */
+.store-range { padding-top: 15px; }
+.store-nav-p { color: #686868; font-size: 13px; margin-top: 5px; }
+.store-form-select { background-color: #202020; color: #e6e6e6; font-size: 11px; border: none; }
+.store-form-select option { padding-top: 2px;}
+/* 총개수 */
+.store-nav-p span { color: #e6e6e6; margin-left: 30px; }
+/* 게임 썸네일 */
+.store-row { margin: 0;}
+.store-card { background-color: #202020; }
+.store-card-body { color : #fff; }
+
+
+/* search page*/
+.search-area { margin: 10px; }
+.search-sb-100 { width: 100%; }
+.search-input { background: #202020; border: none;}
+.search-input:focus { color: #e6e6e6; background: #202020; border: none; outline: none;}
+
+
+
+
+
+
+
+
+
+

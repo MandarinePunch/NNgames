@@ -1,0 +1,66 @@
+/* 결제창 전체 */
+.payment {
+	color: white;
+	width: 1200px;
+}
+
+/* 결제창 타이틀 */
+.payment__title {
+	text-align: center;
+	margin: 50px 0 80px 0;
+}
+
+/* 결제창 박스(외부 큰 div) */
+.payment__big-box {
+	min-height: 450px;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* 결제창 박스(내부 큰 div 2개) */
+.payment__box {
+	width: 400px;
+}
+
+/* 결제창 왼쪽 박스 */
+.payment__left-text {
+	margin-bottom: 5px;
+}
+
+.payment__input-box {
+	margin-bottom: 20px;
+}
+
+/* 결제창 오른쪽 박스 */
+.payment__right-total {
+	margin-bottom: 30px;
+}
+
+.payment__right-text {
+	display: flex;
+	justify-content: space-between;
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+
+.payment__right-text-sum {
+	display: flex;
+	justify-content: space-between;
+	font-size: 20px;
+	margin-bottom: 30px;
+	padding-top: 30px;
+	border-top: 1px solid #2A2A2A;
+}
+
+/* 결제 버튼 */
+.payment__submit-btn {
+	width: 100%;
+	font-size: 20px;
+	height: 40px;
+}
+
+/* 공란시 문구 */
+.pay_pred {
+	font-size: 15px;
+	color: red;
+}

@@ -1,0 +1,14 @@
+.payment-complete {
+	margin-top: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	color: white;
+	min-height: 400px;
+	text-align: center;
+}
+
+.payment-complete__btn{
+	width: 200px;
+	height: 40px;
+}

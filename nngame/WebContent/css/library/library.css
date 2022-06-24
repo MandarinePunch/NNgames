@@ -1,0 +1,80 @@
+/* library 전체 */
+.lib {
+	color: white;
+	min-height: 700px;
+}
+
+/* /////////////////////////////////// */
+/* [게임명, 플레이타임] css (검색바 밑에 글씨) */
+.lib__list {
+	height: 50px;
+	display: flex;
+	align-items: flex-end;
+	padding-bottom: 10px;
+}
+
+.lib__list-font{
+	font-size: 16px;
+}
+
+/* /////////////////////////////////// */
+/* 라이브러리 보유 게임 */
+.lib__game {
+	height: 100px;
+	background-color: #2A2A2A;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+/* 이미지, 게임명, 플레이타임 박스 */
+.lib__game-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
+	padding: 0 5px;
+}
+
+/* 이미지 박스 */
+.lib__game-img-box {
+	width: 20%;
+}
+
+/* 이미지 크기 */
+.lib__game-img {
+	width: 180px;
+	height: 90px;
+	border-radius: 5px;
+}
+
+/* 게임명 박스 */
+.lib__game-name {
+	width: 60%;
+	text-align: center;
+}
+
+.lib__game-font{
+	font-size: 20px;
+}
+
+/* 플레이타임 박스 */
+.lib__playtime {
+	width: 20%;
+	text-align: center;
+}
+
+/* /////////////////////////////////// */
+/* 실행 버튼 */
+.lib__play-btn-box {
+	width: 10%;
+	text-align: center;
+}
+
+.lib__play-btn{
+	font-size: 17px;
+	width: 80px;
+	height: 40px;
+}
