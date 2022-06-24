@@ -28,7 +28,7 @@ public class UserLoginOkAction implements Action{
 			forward.setPath("/");
 		} else {							// 로그인 실패
 			System.out.println("로그인 실패");
-			forward.setPath("/login/login.jsp");
+			forward.setPath("/user/login");
 		}
 		
 		//forward.setRedirect(false);

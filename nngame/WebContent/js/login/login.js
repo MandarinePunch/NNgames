@@ -27,6 +27,7 @@ function login_focusOut() {
 	}
 }
 
+// 카카오 로그인 연동
 function kakaoLogin() {
     window.Kakao.Auth.login({
     	scope: 'profile_nickname, account_email, age_range, birthday', // 동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값
@@ -56,3 +57,39 @@ function kakaoLogin() {
 		}
 	});
 }
+
+// 네이버 로그인 연동
+var naverLogin = new naver.LoginWithNaverId(
+		{
+			clientId: "M_PF7i1iZSNbJ5ywRFvF", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
+			callbackUrl: "http://localhost:9090/login/login.jsp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+			isPopup: false,
+			callbackHandle: true
+		}
+	);	
+	naverLogin.init();
+	document.getElementById('naverIdLogin_loginButton').addEventListener('click', function () {
+	naverLogin.getLoginStatus(function (status) {
+		if (status) {
+			var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문
+			if( email == undefined || email == null) {
+				alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+				naverLogin.reprompt();
+				return;
+			}
+			console.log(naverLogin.user);
+			
+    		let frm = document.getElementById('naverfrm');
+    		
+    		document.getElementById('naver_nick').value = naverLogin.user.getName();
+    		document.getElementById('naver_email').value = naverLogin.user.getEmail();
+    		document.getElementById('naver_age').value = naverLogin.user.getBirthyear();
+    		document.getElementById('naver_birth').value = naverLogin.user.getBirthday();
+    		document.getElementById('naver_phone').value = naverLogin.user.getMobile();
+    		
+    		frm.submit();
+		} else {
+			console.log("callback 처리에 실패하였습니다.");
+		}
+	});
+});

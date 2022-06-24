@@ -15,7 +15,7 @@
 		
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand header__nav-brand" href="/index.jsp"> 
+				<a class="navbar-brand header__nav-brand" href="/"> 
 					<img src="/img/logo/logo.png">
 				</a>
 				<button class="navbar-toggler" type="button"
@@ -65,12 +65,12 @@
 							<c:when test="${empty udto}">
 								<li class="nav-item header__nav-item"><a
 									class="nav-link active" aria-current="page"
-									href="/login/login.jsp"> Login </a></li>
+									href="/user/login"> Login </a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="nav-item header__nav-item"><a
 									class="nav-link active" aria-current="page"
-									href="/myPage.jsp"> <i class="fa-solid fa-user"></i>
+									href="/user/myPage"> <i class="fa-solid fa-user"></i>
 								</a></li>
 								<li class="nav-item header__nav-item"><a
 									class="nav-link active" aria-current="page"

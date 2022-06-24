@@ -26,7 +26,7 @@ public class UserPwFindAction implements Action{
 			request.setAttribute("findout", "아이디가 없습니다.");
 		}
 		
-		forward.setPath("/login/findpw.jsp");
+		forward.setPath("/user/findpw");
 		forward.setRedirect(false);
 		return forward;
 	}

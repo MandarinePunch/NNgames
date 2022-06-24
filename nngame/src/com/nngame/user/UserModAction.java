@@ -23,6 +23,15 @@ public class UserModAction implements Action{
 		udao.usermod(user_email, user_nickname, user_phone);
 		
 		udto = udao.getUserData(user_email);
+		
+		String isLinked = udao.isLinkUser(user_email);
+		if(isLinked.equals("ka") || isLinked.equals("na")) {
+			System.out.println("연동유저, 연동 파라미터값 부여됨");
+			udto.setUser_pwd(isLinked);
+		} else {
+			System.out.println("연동 유저 아님");
+		}
+		
 		System.out.println(udto);
 		
 		request.getSession().setAttribute("udto", udto);
