@@ -123,7 +123,7 @@
 				<div class="row row-cols-1 row-cols-md-6 g-4 store-row">
 					<c:forEach var="glist" items="${genrelist }">
 						<div class="col">
-							<a class="card h-100 store-card" href="/gamedetail.jsp"> 
+							<a class="card h-100 store-card" href="/game/detail?game_num=${glist.gameDTO.game_num }"> 
 								<img src="/img/games/${glist.imageDTO.image_main }" class="card-img-top" alt="...">
 								<div class="card-body store-card-body">
 									<h5 class="card-title">${glist.gameDTO.game_name } </h5>
