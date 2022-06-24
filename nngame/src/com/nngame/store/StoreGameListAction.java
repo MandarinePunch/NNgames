@@ -25,15 +25,13 @@ public class StoreGameListAction implements Action{
 		request.setAttribute("totalCnt", totalCnt);
 		
 		// 전체게임리스트
-		if( sort == null || sort.equals("0") ) {
+		if( sort == null || sort.equals("ABC") ) {
 			request.setAttribute("storegamelist", sdao.getStoreGameList());
-		}else if( sort.equals("1")){
-			request.setAttribute("storegamelist", sdao.getSortDESC());
+		}else if( sort.equals("DESC") ){
+			request.setAttribute("storegamelist", sdao.getSortListDESC());
+		}else if( sort.equals("ASC") ) {
+			request.setAttribute("storegamelist", sdao.getSortListASC());
 		}
-		
-		
-		
-		
 		
 		
 		

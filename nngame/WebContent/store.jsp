@@ -88,9 +88,9 @@
 				<li class="store-nav dropdown">
 					<form action="/store/Storegamelist" method="post">
 						<select name="store-sort" class="form-select store-form-select" aria-label="Default select example">
-							<option value="0">사전순</option>
-							<option value="1">가격: 오름차순</option>
-							<option value="2">가격: 내림차순</option>
+							<option value="ABC">사전순</option>
+							<option value="DESC">가격: 오름차순</option>
+							<option value="ASC">가격: 내림차순</option>
 						</select>
 						<input type="submit" value="보기">
 					</form>
@@ -113,7 +113,7 @@
 								<img src="/img/games/${list.imageDTO.image_main }" class="card-img-top" alt="...">
 								<div class="card-body store-card-body">
 									<h5 class="card-title">${list.gameDTO.game_name } </h5>
-									<p class="card-text">${list.gameDTO.game_price }</p>
+									<p class="card-text">&#xFFE6; ${list.gameDTO.game_price }</p>
 								</div>
 							</a>
 						</div>
@@ -130,7 +130,7 @@
 								<img src="/img/games/${glist.imageDTO.image_main }" class="card-img-top" alt="...">
 								<div class="card-body store-card-body">
 									<h5 class="card-title">${glist.gameDTO.game_name } </h5>
-									<p class="card-text">${glist.gameDTO.game_price }</p>
+									<p class="card-text">&#xFFE6; ${glist.gameDTO.game_price }</p>
 								</div>
 							</a>
 						</div>
