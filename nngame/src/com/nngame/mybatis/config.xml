@@ -14,6 +14,7 @@
 		<typeAlias type="com.nngame.game.dto.ImageDTO" alias="ImageDTO"/>
 		<typeAlias type="com.nngame.cart.dao.CartDTO" alias="CartDTO"/>
 		<typeAlias type="com.nngame.gamedetail.dao.GameDetailDTO" alias="GameDetailDTO"/>
+		<typeAlias type="com.nngame.review.dto.ReviewDTO" alias="ReviewDTO"/>
 	</typeAliases>
 
 	<environments default="development">

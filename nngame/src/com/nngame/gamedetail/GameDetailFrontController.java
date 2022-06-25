@@ -42,7 +42,10 @@ public class GameDetailFrontController extends HttpServlet{
 		if(requestURI.equals("/game/detail")) {			
 			forward = new GameDetailShowAction().execute(request, response);
 			
-		} 
+		} else if(requestURI.equals("/game/writeReview.io")){
+			forward = new ReviewWriteAction().execute(request, response);
+			
+		}
 		
 		if(forward != null) {
 			if(forward.isRedirect()) {

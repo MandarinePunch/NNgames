@@ -35,11 +35,27 @@
 		<result column="IMAGE_SCREEN4" property="image_screen4"/>
 	</resultMap>
 	
+	<!-- 유저 테이블 -->
+	<resultMap type="UserDTO" id="userMap">
+		<result column="USER_NICKNAME" property="user_nickname"/>
+	</resultMap>
+	
 	<!-- 게임 상세 DTO -->
 	<resultMap type="GameDetailDTO" id="gameDetailMap">
 		<collection property="gameDTO" resultMap="gameMap" />
 		<collection property="imageDTO" resultMap="imgMap" />
 		<collection property="cateDTO" resultMap="cateMap" />
+	</resultMap>
+	
+	<!-- 리뷰 DTO -->
+	<resultMap type="ReviewDTO" id="reviewMap">
+		<result column="REVIEW_NUM" property="review_num"/>
+		<result column="REVIEW_RATE" property="review_rate"/>
+		<result column="REVIEW_CONTENT" property="review_content"/>
+		<result column="REVIEW_DATE" property="review_date"/>
+		<result column="GAME_NUM" property="game_num"/>
+		<result column="USER_NUM" property="user_num"/>
+		<collection property="userDTO" resultMap="userMap" />
 	</resultMap>
 
 	<!-- 게임 상세 출력 -->
@@ -51,5 +67,19 @@
 		WHERE 	g.GAME_NUM = #{game_num}
 	</select>
 	
+	<!-- review에 insert -->
+	<insert id="insertReview" parameterType="hashmap">
+		INSERT INTO REVIEW  
+		VALUES (SEQ_review_NO.nextval, 5, #{review_content}, sysdate, #{game_num}, #{user_num})
+	</insert>
+	
+	<select id="getReviewList" parameterType="_int" resultMap="reviewMap">
+		SELECT 	r.REVIEW_NUM , r.REVIEW_RATE , r.REVIEW_CONTENT 
+		,	r.REVIEW_DATE , r.GAME_NUM , r.USER_NUM 
+		,	u.USER_NICKNAME 
+		FROM REVIEW r 
+			LEFT OUTER JOIN USERINFO u ON r.USER_NUM = u.USER_NUM 
+		WHERE GAME_NUM = #{game_num}
+	</select>
 	
 </mapper>

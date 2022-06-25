@@ -27,7 +27,9 @@
 	<%@ include file="/tags/header.jsp"%>
 	
 	<!-- main -->
-
+	<c:set var="reviewlist" scope="request" value="${reviewList }" />
+	<c:set var="udto" scope="session" value="${udto }" />
+	
 	<c:choose>
 		<c:when test="${success == true }">
 			<script>
@@ -118,38 +120,33 @@
 				${gamedetail.gameDTO.game_require }
 			</div>
 		</div>
+		
+		<%-- 리뷰 작성 --%>
 		<h1 class="detail__review-title">Review</h1>
-		<form class="d-flex">
-	        <input class="me-2 detail__review-input" type="search" placeholder="Search" aria-label="Search">
-	    	<button class="btn submit-btn" type="submit">Comment</button>
-	    </form>
+		<c:if test="${not empty udto }">
+			<form action="/game/writeReview.io" class="d-flex" method="post">
+		        <input class="me-2 detail__review-input" type="text"
+		         placeholder="댓글을 입력하세요" aria-label="Search" name="review_content">
+		    	<button class="btn submit-btn" type="submit">Comment</button>
+		    	<input type="hidden" name="game_num" value="${gamedetail.gameDTO.game_num }">
+		    </form>	
+		</c:if>
 	    <section>
-	    	<table class="detail__review-table">
-	    		<tr height="40px">
-	    			<td width="10%" style="font-weight: bold">Mandarine</td>
-	    			<td width="10%" style="color:rgba(255,255,255,0.5)">2020-10-10</td>
-	    			<td width="80%" align="right" class="detail__review-delete">
-						<a>[수정]</a>&nbsp;&nbsp;
-						<a>[삭제]</a>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td colspan="2">어떤 내용을 원하시나요</td>
-	    		</tr>
-	    	</table>
-	    	<table class="detail__review-table">
-	    		<tr height="40px" valign="middle">
-	    			<td width="10%" class="detail__review-name">Mandarine</td>
-	    			<td width="10%" class="detail__review-date">2020-10-10</td>
-	    			<td width="80%" align="right" class="detail__review-delete">
-						<a>[수정]</a>&nbsp;&nbsp;
-						<a>[삭제]</a>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td colspan="2">어떤 내용을 원하시나요</td>
-	    		</tr>
-	    	</table>
+	    	<c:forEach var="review" items="${reviewlist }">
+		    	<table class="detail__review-table">
+		    		<tr height="40px" valign="middle">
+		    			<td width="10%" class="detail__review-name">${review.userDTO.user_nickname }</td>
+		    			<td width="20%" class="detail__review-date">${review.review_date }</td>
+		    			<td width="70%" align="right" class="detail__review-delete">
+							<a>[수정]</a>&nbsp;&nbsp;
+							<a>[삭제]</a>
+		    			</td>
+		    		</tr>
+		    		<tr>
+		    			<td colspan="2">${review.review_content }</td>
+		    		</tr>
+		    	</table>
+	    	</c:forEach>
 	    </section>
 	</div>
 
