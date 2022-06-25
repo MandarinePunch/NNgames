@@ -27,7 +27,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item header__nav-item"><a class="nav-link active"
-							aria-current="page" href="/store/Storegamelist">스토어</a></li>
+							aria-current="page" href="/store/Storegamelist?genre=0">스토어</a></li>
 						<li class="nav-item header__nav-item">	
 							<a class="nav-link active" aria-current="page" 
 							href="/support/List">고객지원</a>
@@ -35,9 +35,9 @@
 						<li class="nav-item header__nav-item"><a class="nav-link active"
 							aria-current="page" href="/library.jsp">라이브러리</a></li>
 					</ul>
-					<form class="d-flex">
+					<form action="/search/Searchgamelist" class="d-flex">
 						<input class="header__search me-2" type="search"
-							placeholder="Search" aria-label="Search">
+							placeholder="검색어를 입력하세요" aria-label="Search" name="search-term">
 						<button class="btn btn-outline-success" type="submit">
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</button>

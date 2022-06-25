@@ -53,7 +53,7 @@
 	</select>
 	<!-- 가격오름차순으로 정렬하기 -->
 	<select id="getSortListDESC" resultMap="gameListMap">
-		SELECT	g.GAME_NUM, g.GAME_NAME, g.GAME_PRICE, c.CATE_GENRE, gi.IMAGE_MAIN 
+		SELECT	g.GAME_NUM, g.GAME_NAME, g.GAME_PRICE, gi.IMAGE_MAIN 
 		FROM 	GAME g 
 			LEFT OUTER JOIN CATEGORY c ON g.CATE_NUM = c.CATE_NUM 
 	 		LEFT OUTER JOIN GAME_IMAGE gi ON g.GAME_NUM = gi.GAME_NUM 
@@ -61,7 +61,7 @@
 	</select>
 	<!-- 가격내림차순으로 정렬하기 -->
 	<select id="getSortListASC" resultMap="gameListMap">
-		SELECT	g.GAME_NUM, g.GAME_NAME, g.GAME_PRICE, c.CATE_GENRE, gi.IMAGE_MAIN 
+		SELECT	g.GAME_NUM, g.GAME_NAME, g.GAME_PRICE, gi.IMAGE_MAIN 
 		FROM 	GAME g 
 			LEFT OUTER JOIN CATEGORY c ON g.CATE_NUM = c.CATE_NUM 
 	 		LEFT OUTER JOIN GAME_IMAGE gi ON g.GAME_NUM = gi.GAME_NUM 
@@ -82,10 +82,30 @@
 		WHERE g.CATE_NUM  = #{genre}
 		ORDER BY GAME_NAME 
 	</select>
+	
 	<!-- 장르별 게임수 -->
 	<select id="getGenreCnt" parameterType="_int" resultType="_int">
 		SELECT COUNT(*) FROM GAME WHERE CATE_NUM = #{genre}
 	</select>
 	
+	<!-- 장르 리스트 오름차순가격순으로 정렬하기 -->
+	<select id="getSortGenreDESC" parameterType="_int" resultMap="gameListMap">
+		SELECT	g.GAME_NUM , g.GAME_NAME , g.GAME_PRICE, g.CATE_NUM, gi.IMAGE_MAIN 
+		FROM 	GAME g 
+ 			LEFT OUTER JOIN CATEGORY c ON g.CATE_NUM = c.CATE_NUM 
+ 			LEFT OUTER JOIN GAME_IMAGE gi ON g.GAME_NUM = gi.GAME_NUM 
+		WHERE g.CATE_NUM  = #{genre}
+		ORDER BY GAME_PRICE DESC
+	</select>
+	
+	<!-- 장르 리스트 내림차순가격순으로 정렬하기 -->
+	<select id="getSortGenreASC" parameterType="_int" resultMap="gameListMap">
+		SELECT	g.GAME_NUM , g.GAME_NAME , g.GAME_PRICE, g.CATE_NUM, gi.IMAGE_MAIN 
+		FROM 	GAME g 
+ 			LEFT OUTER JOIN CATEGORY c ON g.CATE_NUM = c.CATE_NUM 
+ 			LEFT OUTER JOIN GAME_IMAGE gi ON g.GAME_NUM = gi.GAME_NUM 
+		WHERE g.CATE_NUM  = #{genre}
+		ORDER BY GAME_PRICE
+	</select>
 	
 </mapper>
