@@ -15,6 +15,7 @@
 	display: flex;
 	justify-content: space-between;
 	min-height: 550px;
+	margin-bottom: 100px;
 }
 
 /* 큰 이미지 사이즈  */
@@ -77,12 +78,6 @@
 
 /* ////////////////////////////////////////// */
 
-/* [게임 상세 설명] text */
-.detail__description h1 {
-	text-align: center;
-	margin: 50px 0;
-}
-
 /* 게임설명, 요구사양 */
 .detail__description-title {
 	border-bottom: 1px solid #2A2A2A;
@@ -97,10 +92,39 @@
 	margin-bottom: 50px;
 }
 
+/* ////////////////////////////////////////// */
 
+.detail__review-title{
+	text-align: center;
+	margin-bottom: 50px;
+}
 
+.detail__review-input{
+	width: 100%;
+	border: none;
+	outline: none;
+	border-bottom: 1px solid #414040;
+	background-color: #121212;
+	transition: border-color 0.2s ease-in-out;
+}
 
+.detail__review-input:focus {
+	border-color: #e6e6e6;
+}
 
+.detail__review-table{
+	width: 80%;
+	margin-top: 30px;
+}
+
+.detail__review-name{
+	font-weight: bold;
+}
+
+.detail__review-date,
+.detail__review-delete {
+	color: rgba(255,255,255,0.5);
+}
 
 
 

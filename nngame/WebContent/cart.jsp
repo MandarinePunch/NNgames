@@ -28,8 +28,8 @@
 	<c:set var="totalPrice" value="0" />
 	
 	<main class="cart-container">
-	<div class="cart-main">
-		<c:choose>
+		<div class="cart-main">
+			<c:choose>
 				<c:when test="${empty cartlist }">
 					<div class="cart-empty">				
 						<h1>장바구니가 비어있어요!</h1>
