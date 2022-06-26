@@ -80,6 +80,7 @@
 		FROM REVIEW r 
 			LEFT OUTER JOIN USERINFO u ON r.USER_NUM = u.USER_NUM 
 		WHERE GAME_NUM = #{game_num}
+		ORDER BY r.REVIEW_NUM DESC
 	</select>
 	
 </mapper>

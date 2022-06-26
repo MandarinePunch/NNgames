@@ -21,9 +21,11 @@ public class GameDetailShowAction implements Action {
 		
 		GameDetailDAO gddao = new GameDetailDAO();
 		
+		// 게임 상세 및 리뷰 출력
 		GameDetailDTO gddto = gddao.getGameDetail(gameNum);
 		List<ReviewDTO> list = gddao.getReviewList(gameNum);
 		
+		// 존재하는 게임인지 여부
 		if(gddto != null) {			
 			request.setAttribute("gameDetail", gddto);
 			request.setAttribute("reviewList", list);

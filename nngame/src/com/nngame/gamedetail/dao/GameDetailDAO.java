@@ -34,6 +34,7 @@ public class GameDetailDAO {
 		sqlsession.insert("GameDetail.insertReview", map);
 	}
 	
+	// 게임 리뷰 출력
 	public List<ReviewDTO> getReviewList(int gameNum){
 		List<ReviewDTO> list = sqlsession.selectList("GameDetail.getReviewList", gameNum);
 		

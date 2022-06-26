@@ -124,7 +124,7 @@
 		<%-- 리뷰 작성 --%>
 		<h1 class="detail__review-title">Review</h1>
 		<c:if test="${not empty udto }">
-			<form action="/game/writeReview.io" class="d-flex" method="post">
+			<form action="/game/writeReview.io" class="d-flex detail__review-form" method="post">
 		        <input class="me-2 detail__review-input" type="text"
 		         placeholder="댓글을 입력하세요" aria-label="Search" name="review_content">
 		    	<button class="btn submit-btn" type="submit">Comment</button>
@@ -132,21 +132,28 @@
 		    </form>	
 		</c:if>
 	    <section>
-	    	<c:forEach var="review" items="${reviewlist }">
-		    	<table class="detail__review-table">
-		    		<tr height="40px" valign="middle">
-		    			<td width="10%" class="detail__review-name">${review.userDTO.user_nickname }</td>
-		    			<td width="20%" class="detail__review-date">${review.review_date }</td>
-		    			<td width="70%" align="right" class="detail__review-delete">
-							<a>[수정]</a>&nbsp;&nbsp;
-							<a>[삭제]</a>
-		    			</td>
-		    		</tr>
-		    		<tr>
-		    			<td colspan="2">${review.review_content }</td>
-		    		</tr>
-		    	</table>
-	    	</c:forEach>
+	    	<c:choose>
+	    		<c:when test="${empty reviewlist }">
+	    			<h3 class="detail__review-none">작성된 리뷰가 없습니다</h3>
+	    		</c:when>
+	    		<c:otherwise>	
+			    	<c:forEach var="review" items="${reviewlist }">
+				    	<table class="detail__review-table">
+				    		<tr height="40px" valign="middle">
+				    			<td width="10%" class="detail__review-name">${review.userDTO.user_nickname }</td>
+				    			<td width="20%" class="detail__review-date">${review.review_date }</td>
+				    			<td width="70%" align="right" class="detail__review-delete">
+									<a>[수정]</a>&nbsp;&nbsp;
+									<a href="javascript:deleteReview(${review.review_num }, ${review.user_num })">[삭제]</a>
+				    			</td>
+				    		</tr>
+				    		<tr>
+				    			<td colspan="2">${review.review_content }</td>
+				    		</tr>
+				    	</table>
+			    	</c:forEach>
+	    		</c:otherwise>
+	    	</c:choose>
 	    </section>
 	</div>
 
