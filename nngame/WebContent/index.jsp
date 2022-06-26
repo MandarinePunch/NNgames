@@ -31,21 +31,27 @@
 		</div>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="./img/banner/main/bg1.jpg" class="d-block w-100" alt="...">
+				<a href="/game/detail?game_num=5">
+					<img src="./img/banner/main/bg1.jpg" class="d-block w-100" alt="...">
+				</a>
 				<div class="carousel-caption d-none d-md-block">
 					<h1>Far Cry 6</h1>
 					<p>현대식 게릴라 혁명의 비정한 세계에 뛰어들어 독재자와 그 아들로부터 국가를 해방하십시오.</p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="./img/banner/main/bg2.jpg" class="d-block w-100" alt="...">
+				<a href="/game/detail?game_num=12">			
+					<img src="./img/banner/main/bg2.jpg" class="d-block w-100" alt="...">
+				</a>
 				<div class="carousel-caption d-none d-md-block">
 					<h1>FINAL FANTASY VII REMAKE INTERGRADE</h1>
 					<p>불후의 명작 『FINAL FANTASY VII』의 세계가 「새로운 이야기」로 다시 태어난다.</p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="./img/banner/main/bg3.jpg" class="d-block w-100" alt="...">
+				<a href="/game/detail?game_num=1">
+					<img src="./img/banner/main/bg3.jpg" class="d-block w-100" alt="...">
+				</a>
 				<div class="carousel-caption d-none d-md-block">
 					<h1>SIFU 시푸</h1>
 					<p>자신의 가족을 살해한 자들을 쫒아 복수의 길에 들어선 쿵푸 수련생이 되시겠습니까?</p>

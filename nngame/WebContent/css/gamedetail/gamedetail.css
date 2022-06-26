@@ -122,8 +122,9 @@
 	color: rgba(255,255,255,0.5);
 }
 
+/* 쓰여진 리뷰가 나오는 테이블 */
 .detail__review-table{
-	width: 80%;
+	width: 92%;
 	margin-top: 30px;
 }
 
@@ -132,13 +133,51 @@
 }
 
 .detail__review-date,
-.detail__review-delete {
+.detail__review-delete,
+.detail__review-content {
 	color: rgba(255,255,255,0.5);
 }
 
+.detail__review-delete{
 
+}
 
+/* ////////////////////////////////////////// */
+/* 별점 */
+.review-star{
+    display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
+    direction: rtl; /* 이모지 순서 반전 */
+    border: 0; /* 필드셋 테두리 제거 */
+}
 
+.review-star input[type=radio]{
+    display: none; /* 라디오박스 감춤 */
+}
 
+/* review-star(별점 input), review-star-show(화면에 출력된 별점) */
+.review-star label,
+.review-star-show label{
+    font-size: 17px; /* 이모지 크기 */
+    color: transparent; /* 기존 이모지 컬러 제거 */
+    text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+    margin: -4px;
+}
 
+.review-star .rate:hover,
+.review-star .rate:hover ~ label{
+    text-shadow: 0 0 0 #ffe403; /* 마우스 호버 뒤에오는 이모지들 */
+    cursor: pointer;
+}
 
+.review-star input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 #ffe403; /* 마우스 클릭 체크 */
+}
+
+/* 선택된 별 */
+.review-star-show .review-star__select{
+	text-shadow: 0 0 0 #ffe403;
+}
+/* 비어있는 별 */
+.review-star-show .review-star__none-select{
+	text-shadow: 0 0 0 #f0f0f0;
+}

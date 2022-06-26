@@ -30,6 +30,7 @@
 	<c:set var="totalPage" value="${requestScope.totalPage }" />
 	<c:set var="currentPage" value="${requestScope.currentPage }" />
 	<c:set var="supportList" value="${requestScope.supportList }" />
+	<c:set var="udto" scope="session" value="${udto }" />
 	<main class="qna__board">
 		<h1 class="qna__board-title">고객지원</h1>
 		<table class="qna__table">
@@ -72,14 +73,16 @@
 				</c:choose>
 			</tbody>
 		</table>
-	
-		<table class="qna__table">
-			<tr>
-				<td align="right">
-					<button class="btn submit-btn" onclick="location.href='/support/insert'">글쓰기</button>
-				</td>
-			</tr>
-		</table>
+		
+		<c:if test="${not empty udto }">		
+			<table class="qna__table">
+				<tr>
+					<td align="right">
+						<button class="btn submit-btn" onclick="location.href='/support/insert'">글쓰기</button>
+					</td>
+				</tr>
+			</table>
+		</c:if>
 		
 		<!-- 페이징 처리 -->
 		<table class="qna__table">

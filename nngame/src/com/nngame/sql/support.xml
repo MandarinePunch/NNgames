@@ -46,4 +46,11 @@
 		SELECT seq_support_no.currval FROM dual
 	</select>
 	
+	<!-- 유저 정보 업데이트시 같이 업데이트 -->
+	<update id="updateUserName" parameterType="hashmap">
+		UPDATE SUPPORT 
+		SET SUPPORT_WRITER = #{user_nickname}
+		WHERE USER_NUM = #{user_num}
+	</update>
+	
 </mapper>

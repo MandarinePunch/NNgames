@@ -31,8 +31,8 @@ function goToPay(price, gameNum){
 }
 
 // 리뷰 삭제
-function deleteReview(reviewNum, userNum){
-	
-	location.href="/game/reviewDelete?review_num=" + reviewNum + "&user_num=" + userNum;
-	
+function deleteReview(reviewNum, userNum, gameNum){
+	location.href="/game/reviewDelete?review_num=" + reviewNum + "&user_num=" + userNum + "&game_num=" + gameNum;
 }
+
+

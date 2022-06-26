@@ -12,7 +12,7 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
 	<!-- header -->
@@ -54,7 +54,7 @@
 					<div class="payment__input-box">
 						<label for="cardNum" class="payment__left-text" id="card">카드 번호</label>
 						<input type="text" class="form-control" id="cardNum"
-							placeholder="xxxx-xxxx-xxxx-xxxx" onblur="card_focusOut()">
+							placeholder="xxxx-xxxx-xxxx-xxxx" onblur="card_focusOut()" maxlength="16" minlength="16">
 						<p id="pcardNum" class="pay_pred"></p>
 					</div>
 					<div class="payment__input-box">
@@ -64,8 +64,8 @@
 						<p id="pcardDate" class="pay_pred"></p>
 					</div>
 					<div class="payment__input-box">
-						<label for="cardPw" class="payment__left-text" id="card">비밀번호</label> <input
-							type="text" class="form-control" id="cardPw" placeholder="비밀번호" onblur="card_focusOut()">
+						<label for="cardPw" class="payment__left-text" id="card">비밀번호</label>
+						<input type="password" class="form-control" id="cardPw" placeholder="비밀번호" onblur="card_focusOut()" maxlength="4" minlength="4">
 						<p id="pcardPw" class="pay_pred"></p>
 					</div>
 				</div>

@@ -46,7 +46,7 @@ public class GameDetailFrontController extends HttpServlet{
 			forward = new ReviewWriteAction().execute(request, response);
 			
 		} else if(requestURI.equals("/game/reviewDelete")) {
-			
+			forward = new ReviewDeleteAction().execute(request, response);
 			
 		}
 		

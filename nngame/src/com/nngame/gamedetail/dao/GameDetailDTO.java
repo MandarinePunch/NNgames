@@ -27,5 +27,4 @@ public class GameDetailDTO {
 	public void setCateDTO(CategoryDTO cateDTO) {
 		this.cateDTO = cateDTO;
 	}
-	
 }

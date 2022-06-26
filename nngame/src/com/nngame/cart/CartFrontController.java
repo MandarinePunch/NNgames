@@ -45,7 +45,7 @@ public class CartFrontController extends HttpServlet{
 		} else if(requestURI.equals("/cart/delete")) {	// 선택 게임 삭제
 			forward = new CartDeleteAction().execute(request, response);
 			
-		} else if(requestURI.equals("/cart/insert")) {
+		} else if(requestURI.equals("/cart/insert")) {	// 카트에 insert
 			forward = new CartInsertAction().execute(request, response);
 			
 		}

@@ -5,6 +5,8 @@
 
 <c:set var="gamedetail" scope="request" value="${gameDetail }" />
 <c:set var="success" scope="request" value="${success }" />
+<c:set var="reviewlist" scope="request" value="${reviewList }" />
+<c:set var="udto" scope="session" value="${udto }" />
 
 <!Doctype html>
 <html lang="en">
@@ -27,8 +29,6 @@
 	<%@ include file="/tags/header.jsp"%>
 	
 	<!-- main -->
-	<c:set var="reviewlist" scope="request" value="${reviewList }" />
-	<c:set var="udto" scope="session" value="${udto }" />
 	
 	<c:choose>
 		<c:when test="${success == true }">
@@ -121,34 +121,64 @@
 			</div>
 		</div>
 		
-		<%-- 리뷰 작성 --%>
+		<%-- 별점 및 리뷰 작성 --%>
 		<h1 class="detail__review-title">Review</h1>
 		<c:if test="${not empty udto }">
-			<form action="/game/writeReview.io" class="d-flex detail__review-form" method="post">
-		        <input class="me-2 detail__review-input" type="text"
-		         placeholder="댓글을 입력하세요" aria-label="Search" name="review_content">
-		    	<button class="btn submit-btn" type="submit">Comment</button>
-		    	<input type="hidden" name="game_num" value="${gamedetail.gameDTO.game_num }">
+			<form action="/game/writeReview.io" class="detail__review-form" method="post">
+				<fieldset class="review-star">
+					<input type="radio" name="rating" value="5" id="rate1" class="rate"><label for="rate1">⭐</label>
+					<input type="radio" name="rating" value="4" id="rate2" class="rate"><label for="rate2">⭐</label>
+					<input type="radio" name="rating" value="3" id="rate3" class="rate"><label for="rate3">⭐</label>
+					<input type="radio" name="rating" value="2" id="rate4" class="rate"><label for="rate4">⭐</label>
+					<input type="radio" name="rating" value="1" id="rate5" class="rate"><label for="rate5">⭐</label>
+				</fieldset>
+				<div class="d-flex">				
+			        <input class="me-2 detail__review-input" type="text"
+			         placeholder="댓글을 입력하세요" aria-label="Search" name="review_content" maxlength="100">
+			    	<button class="btn submit-btn" type="submit">Comment</button>
+			    	<input type="hidden" name="game_num" value="${gamedetail.gameDTO.game_num }">
+				</div>
 		    </form>	
 		</c:if>
+		
+		<%-- 리뷰 출력 --%>
 	    <section>
 	    	<c:choose>
 	    		<c:when test="${empty reviewlist }">
 	    			<h3 class="detail__review-none">작성된 리뷰가 없습니다</h3>
 	    		</c:when>
-	    		<c:otherwise>	
+	    		<c:otherwise>
+	    			<%-- 리뷰 출력 --%>	
 			    	<c:forEach var="review" items="${reviewlist }">
 				    	<table class="detail__review-table">
 				    		<tr height="40px" valign="middle">
-				    			<td width="10%" class="detail__review-name">${review.userDTO.user_nickname }</td>
-				    			<td width="20%" class="detail__review-date">${review.review_date }</td>
-				    			<td width="70%" align="right" class="detail__review-delete">
-									<a>[수정]</a>&nbsp;&nbsp;
-									<a href="javascript:deleteReview(${review.review_num }, ${review.user_num })">[삭제]</a>
+				    			<td width="12%" class="detail__review-name">${review.userDTO.user_nickname }</td>
+				    			<td width="58%">
+				    				<%-- 별점 생성 --%>
+		    						<fieldset class="review-star-show">
+					    				<c:forEach var="i" begin="1" end="5">
+					    					<c:choose>
+					    						<c:when test="${i <= review.review_rate}">
+					    							<label class="review-star__select">⭐</label>
+					    						</c:when>
+					    						<c:otherwise>
+					    							<label class="review-star__none-select">⭐</label>
+					    						</c:otherwise>
+					    					</c:choose>
+					    				</c:forEach>
+		    						</fieldset>
+				    			</td>
+				    			<td width="25%" align="right" class="detail__review-date">${review.review_date }</td>
+				    			<td width="5%" align="right" class="detail__review-delete">
+				    				<c:if test="${udto.user_num == review.user_num }">
+										<a class="detail__review-delete" href="javascript:deleteReview(${review.review_num }, ${review.user_num }, ${review.game_num })">
+											<i class="fa-solid fa-trash-can"></i>
+										</a>
+				    				</c:if>
 				    			</td>
 				    		</tr>
 				    		<tr>
-				    			<td colspan="2">${review.review_content }</td>
+				    			<td colspan="3" class="detail__review-content">${review.review_content }</td>
 				    		</tr>
 				    	</table>
 			    	</c:forEach>

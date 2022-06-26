@@ -70,9 +70,10 @@
 	<!-- review에 insert -->
 	<insert id="insertReview" parameterType="hashmap">
 		INSERT INTO REVIEW  
-		VALUES (SEQ_review_NO.nextval, 5, #{review_content}, sysdate, #{game_num}, #{user_num})
+		VALUES (SEQ_review_NO.nextval, #{review_rate}, #{review_content}, sysdate, #{game_num}, #{user_num})
 	</insert>
 	
+	<!-- 게임별 전체 리뷰 목록 가져오기 -->
 	<select id="getReviewList" parameterType="_int" resultMap="reviewMap">
 		SELECT 	r.REVIEW_NUM , r.REVIEW_RATE , r.REVIEW_CONTENT 
 		,	r.REVIEW_DATE , r.GAME_NUM , r.USER_NUM 
@@ -82,5 +83,10 @@
 		WHERE GAME_NUM = #{game_num}
 		ORDER BY r.REVIEW_NUM DESC
 	</select>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="_int">
+		DELETE FROM REVIEW r WHERE REVIEW_NUM = #{review_num}
+	</delete>
 	
 </mapper>

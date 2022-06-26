@@ -60,6 +60,13 @@ public class SupportDAO {
 		return sqlsession.selectOne("Support.getDetailNum");
 	}	
 	
+	public void updateUserName(String user_nickname, int user_num) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("user_nickname", user_nickname);
+		map.put("user_num", user_num);
+		
+		sqlsession.update("Support.updateUserName", map);
+	}
 }
 
 

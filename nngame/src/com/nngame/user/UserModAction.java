@@ -2,9 +2,13 @@ package com.nngame.user;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.nngame.action.Action;
 import com.nngame.action.ActionForward;
+import com.nngame.gamedetail.dao.GameDetailDAO;
+import com.nngame.support.dao.SupportDAO;
+import com.nngame.support.dao.SupportDTO;
 import com.nngame.user.dao.UserDAO;
 import com.nngame.user.dao.UserDTO;
 
@@ -13,14 +17,26 @@ public class UserModAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
+		HttpSession session = request.getSession();
+		
 		UserDAO udao = new UserDAO();
 		UserDTO udto = new UserDTO();
+		SupportDAO sdao = new SupportDAO();
+		
+		int user_num = 0;
+		
+		// 고객지원 닉네임도 같이 업데이트 해주기 위해
+		if(udto != null) {
+			user_num = ((UserDTO) session.getAttribute("udto")).getUser_num();
+		}
 		
 		String user_email = request.getParameter("user_email");
 		String user_nickname = request.getParameter("user_nickname");
 		String user_phone = request.getParameter("user_phone");
 		
+		// 유저 정보 및 고객지원 닉네임 업데이트
 		udao.usermod(user_email, user_nickname, user_phone);
+		sdao.updateUserName(user_nickname, user_num);
 		
 		udto = udao.getUserData(user_email);
 		
@@ -34,7 +50,7 @@ public class UserModAction implements Action{
 		
 		System.out.println(udto);
 		
-		request.getSession().setAttribute("udto", udto);
+		session.setAttribute("udto", udto);
 		forward.setPath("/");
 		
 		forward.setRedirect(true);

@@ -20,6 +20,12 @@ public class ReviewWriteAction implements Action {
 		UserDTO udto = (UserDTO) session.getAttribute("udto");
 		
 		int gameNum = Integer.parseInt(request.getParameter("game_num"));
+		String strStarRate = request.getParameter("rating");
+		
+		// 별점
+		int starRate = (strStarRate != null) ? Integer.parseInt(strStarRate) : 0;
+		
+		// 리뷰 내용
 		String reviewContent = request.getParameter("review_content");
 		
 		// 유저 로그인 여부 체크
@@ -27,14 +33,14 @@ public class ReviewWriteAction implements Action {
 			int userNum = udto.getUser_num();
 			
 			// 리뷰 테이블에 insert
-			gddao.insertReview(gameNum, userNum, reviewContent);
+			gddao.insertReview(gameNum, userNum, reviewContent, starRate);
 			
 			forward.setPath("/game/detail?game_num=" + gameNum);
-			forward.setRedirect(false);
 		} else {
 			forward.setPath("/user/login");
-			forward.setRedirect(true);
 		}
+		
+		forward.setRedirect(true);
 		
 		return forward;
 	}

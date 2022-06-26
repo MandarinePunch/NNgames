@@ -44,7 +44,7 @@ public class SupportFrontController extends HttpServlet {
 			forward = new SupportUpdateOkAction().execute(request, response);
 			
 		} else if(requestURI.equals("/support/insert")) {	// 고객지원 글 작성(단순 경로 지정)
-			forward = new ActionForward(false, "/support_jsp/qna_write.jsp");
+			forward = new SupportWriteAction().execute(request, response);
 			
 		} else if(requestURI.equals("/support/insertOk.io")) {	// 고객지원 글 작성 성공
 			forward = new SupportWriteOkAction().execute(request, response);

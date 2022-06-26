@@ -25,11 +25,12 @@ public class GameDetailDAO {
 	}
 
 	// 게임 리뷰 작성
-	public void insertReview(int gameNum, int userNum, String reviewContent) {
+	public void insertReview(int gameNum, int userNum, String reviewContent, int starRate) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("game_num", gameNum);
 		map.put("user_num", userNum);
 		map.put("review_content", reviewContent);
+		map.put("review_rate", starRate);
 		
 		sqlsession.insert("GameDetail.insertReview", map);
 	}
@@ -39,6 +40,11 @@ public class GameDetailDAO {
 		List<ReviewDTO> list = sqlsession.selectList("GameDetail.getReviewList", gameNum);
 		
 		return list;
+	}
+
+	// 리뷰 삭제
+	public void deleteReview(int reviewNum) {
+		sqlsession.delete("GameDetail.deleteReview", reviewNum);
 	}
 
 }
