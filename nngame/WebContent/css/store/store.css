@@ -25,18 +25,22 @@
 .store-nav-p { color: #686868; font-size: 13px; margin-top: 5px; }
 .store-form-select { background-color: #202020; color: #e6e6e6; font-size: 11px; border: none; }
 .store-form-select option { padding-top: 2px;}
+#store-form {display : flex; }
+.store-form-input { font-size: 12px; background: #202020; border-radius: 4px; color: #e6e6e6; border: 1px solid #202020; }
 /* 총개수 */
 .store-nav-p span { color: #e6e6e6; margin-left: 30px; }
 /* 게임 썸네일 */
 .store-row { margin: 0;}
 .store-card { background-color: #202020; }
 .store-card-body { color : #fff; }
-
+/* 게임 없을때 */
+#store-div-non { margin: 200px 0 135px; }
+.store-div-h3 { text-align: center; color: #e6e6e6; }
 
 /* search page*/
 .search-area { margin: 10px; }
 .search-sb-100 { width: 100%; }
-.search-input { background: #202020; border: none;}
+.search-input { background: #202020; border: none; color: #e6e6e6; }
 .search-input:focus { color: #e6e6e6; background: #202020; border: none; outline: none;}
 
 

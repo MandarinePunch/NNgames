@@ -12,6 +12,7 @@
 		<typeAlias type="com.nngame.game.dto.CategoryDTO" alias="CategoryDTO"/>
 		<typeAlias type="com.nngame.game.dto.GameDTO" alias="GameDTO"/>
 		<typeAlias type="com.nngame.game.dto.ImageDTO" alias="ImageDTO"/>
+		<typeAlias type="com.nngame.search.dao.SearchDTO" alias="SearchDTO"/>
 		<typeAlias type="com.nngame.cart.dao.CartDTO" alias="CartDTO"/>
 		<typeAlias type="com.nngame.gamedetail.dao.GameDetailDTO" alias="GameDetailDTO"/>
 		<typeAlias type="com.nngame.review.dto.ReviewDTO" alias="ReviewDTO"/>
@@ -35,8 +36,10 @@
 		<mapper resource="com/nngame/sql/support.xml" />
 		<mapper resource="com/nngame/sql/users.xml" />
 		<mapper resource="com/nngame/sql/store.xml" />
+		<mapper resource="com/nngame/sql/search.xml" />
 		<mapper resource="com/nngame/sql/cart.xml" />
 		<mapper resource="com/nngame/sql/gamedetail.xml" />
 		<mapper resource="com/nngame/sql/payment.xml" />
+
 	</mappers>
 </configuration>

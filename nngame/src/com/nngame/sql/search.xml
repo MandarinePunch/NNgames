@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="Search">
+ 
+ 	<!-- 게임테이블 -->
+	<resultMap type="GameDTO" id="gameMap">
+		<result column="GAME_NUM" property="game_num"/>
+		<result column="GAME_NAME" property="game_name"/>
+		<result column="GAME_PRICE" property="game_price"/>
+		<result column="GAME_DEVELOPER" property="game_developer"/>
+		<result column="GAME_RELEASE" property="game_release"/>
+		<result column="GAME_DETAIL" property="game_detail"/>
+		<result column="GAME_REQUIRE" property="game_require"/>
+		<result column="GAME_AGELIMIT" property="game_agelimit"/>
+		<result column="CATE_NUM" property="cate_num"/>
+	</resultMap>
+	
+	<!-- 카테고리테이블 -->
+	<resultMap type="CategoryDTO" id="cateMap">
+		<result column="CATE_NUM" property="cate_num"/>
+		<result column="CATE_GENRE" property="cate_genre"/>
+	</resultMap>
+	
+	<!-- 이미지테이블 -->
+	<resultMap type="ImageDTO" id="imgMap">
+		<result column="IMAGE_NUM" property="image_num"/>
+		<result column="GAME_NUM" property="game_num"/>
+		<result column="IMAGE_MAIN" property="image_main"/>
+		<result column="IMAGE_BANNER" property="image_banner"/>
+		<result column="IMAGE_SCREEN1" property="image_screen1"/>
+		<result column="IMAGE_SCREEN2" property="image_screen2"/>
+		<result column="IMAGE_SCREEN3" property="image_screen3"/>
+		<result column="IMAGE_SCREEN4" property="image_screen4"/>
+	</resultMap>
+	
+	<!-- 검색 -->
+	<resultMap type="SearchDTO" id="gameListMap">
+	   <collection property="gameDTO" resultMap="gameMap" />
+	   <collection property="categoryDTO" resultMap="cateMap" />
+	   <collection property="imageDTO" resultMap="imgMap" />
+	</resultMap>
+	
+	
+	<!-- 검색된 게임목록 가져오기 -->
+	<select id="getSearchGameList" parameterType="string" resultMap="gameListMap">
+		SELECT	g.GAME_NUM , g.GAME_NAME , g.GAME_PRICE, g.CATE_NUM, gi.IMAGE_MAIN 
+		FROM 	GAME g 
+			LEFT OUTER JOIN CATEGORY c ON g.CATE_NUM = c.CATE_NUM 
+			LEFT OUTER JOIN GAME_IMAGE gi ON g.GAME_NUM = gi.GAME_NUM 
+		WHERE GAME_NAME LIKE '%' ||  #{keyword} || '%'
+		ORDER BY GAME_NAME
+	</select>
+	
+	<!-- 검색게임수  -->
+	<select id="getSearchGameCnt" parameterType="string" resultType="_int" >
+		SELECT COUNT(*)FROM GAME WHERE GAME_NAME  LIKE '%' ||  #{keyword} || '%'
+	</select>
+	
+	<!-- 정렬 가격오름차순 -->
+	<select id="getSearchListDESC" parameterType="string" resultMap="gameListMap"> 
+		SELECT	g.GAME_NUM , g.GAME_NAME , g.GAME_PRICE, g.CATE_NUM, gi.IMAGE_MAIN 
+		FROM 	GAME g 
+			LEFT OUTER JOIN CATEGORY c ON g.CATE_NUM = c.CATE_NUM 
+			LEFT OUTER JOIN GAME_IMAGE gi ON g.GAME_NUM = gi.GAME_NUM 
+		WHERE GAME_NAME LIKE '%' ||  #{keyword} || '%'
+		ORDER BY GAME_PRICE DESC
+	</select>
+	
+	<!-- 정렬 가격내림차순 -->
+	<select id="getSearchListASC" parameterType="string" resultMap="gameListMap">
+		SELECT	g.GAME_NUM , g.GAME_NAME , g.GAME_PRICE, g.CATE_NUM, gi.IMAGE_MAIN 
+		FROM 	GAME g 
+			LEFT OUTER JOIN CATEGORY c ON g.CATE_NUM = c.CATE_NUM 
+			LEFT OUTER JOIN GAME_IMAGE gi ON g.GAME_NUM = gi.GAME_NUM 
+		WHERE GAME_NAME LIKE '%' ||  #{keyword} || '%'
+		ORDER BY GAME_PRICE
+	</select>
+</mapper>
