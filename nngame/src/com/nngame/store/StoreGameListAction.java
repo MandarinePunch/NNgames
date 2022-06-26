@@ -33,33 +33,35 @@ public class StoreGameListAction implements Action{
 			
 			if( sort == null || sort.equals("ABC") ) {
 				System.out.println(sort+"전체사전순");
-				request.setAttribute("storegamelist", sdao.getStoreGameList());
+				request.setAttribute("gamelist", sdao.getStoreGameList());
 				
 			}else if( sort.equals("DESC") ){
 				System.out.println(sort+"전체오름순");
-				request.setAttribute("storegamelist", sdao.getSortListDESC());
+				request.setAttribute("gamelist", sdao.getSortListDESC());
 				
 			}else if( sort.equals("ASC") ) {
 				System.out.println(sort+"전체내림순");
-				request.setAttribute("storegamelist", sdao.getSortListASC());
+				request.setAttribute("gamelist", sdao.getSortListASC());
 				
 			}
 		
 		// 장르게임리스트
 		}else{
+			// 장르게임수
 			request.setAttribute("totalCnt", genreCnt);
+			
 			if( sort == null || sort.equals("ABC") ) {
 				System.out.println("장르사전순");
-				request.setAttribute("storegamelist", sdao.getGenreList(genre));
+				request.setAttribute("gamelist", sdao.getGenreList(genre));
 				
 			}else if( sort.equals("DESC") ){
 				System.out.println("장르오름순");
-				request.setAttribute("storegamelist", sdao.getSortGenreDESC(genre));
+				request.setAttribute("gamelist", sdao.getSortGenreDESC(genre));
 				
 				
 			}else if( sort.equals("ASC") ) {
 				System.out.println("장르내림순");
-				request.setAttribute("storegamelist", sdao.getSortGenreASC(genre));
+				request.setAttribute("gamelist", sdao.getSortGenreASC(genre));
 				
 				
 			}

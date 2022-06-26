@@ -35,10 +35,10 @@
 						<li class="nav-item header__nav-item"><a class="nav-link active"
 							aria-current="page" href="/library.jsp">라이브러리</a></li>
 					</ul>
-					<form action="/search/Searchgamelist" class="d-flex">
+					<form action="/search/Searchgamelist" class="d-flex" name="searchFormHearder" onsubmit="checkFormHeader(); return false;">
 						<input class="header__search me-2" type="search"
-							placeholder="검색어를 입력하세요" aria-label="Search" name="search-term">
-						<button class="btn btn-outline-success" type="submit">
+							placeholder="검색어를 입력하세요" aria-label="Search" name="searchTerm">
+						<button class="btn btn-outline-success" type="submit"  >
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</button>
 					</form>
@@ -90,6 +90,22 @@
 		function pleaseLogin() {
 			alert("로그인이 필요한 서비스입니다.");
 		}
+		
+		// 검색어입력체크
+		function checkFormHeader(){
+			let frmHd = document.searchFormHearder;
+			
+			if( !frmHd.searchTerm.value ){
+			      alert('검색어를 입력해 주세요');
+			      frmHd.searchTerm.focus();
+			      return false;
+			}
+			
+			frmHd.submit();
+		}
+		
+		
+		
 	</script>
 	
 	<!-- fontawesome 아이콘 (fontawesome 아이콘 쓰고 싶으면 이 스크립트 복붙해서 쓰면 됩니다.) -->

@@ -16,8 +16,8 @@
 </head>
 <body>
 	<c:set var="totalCnt" scope="request" value="${totalCnt }"/>
-	<c:set var="storegamelist" scope="request" value="${storegamelist }"/>
-	<c:set var="genrelist" scope="request" value="${genrelist }"/>
+	<c:set var="gamelist" scope="request" value="${gamelist }"/>
+<%-- 	<c:set var="genrelist" scope="request" value="${genrelist }"/> --%>
 	
 	<!-- header -->
 	<%@ include file="/tags/header.jsp"%>
@@ -87,13 +87,13 @@
 					<p class="store-nav-p">정렬기준</p>
 				</li>
 				<li class="store-nav dropdown">
-					<form method="post">
+					<form id="store-form" method="post">
 						<select name="store-sort" class="form-select store-form-select" aria-label="Default select example">
-							<option value="ABC" >사전순</option>
+							<option value="ABC" selected>사전순</option>
 							<option value="DESC" >가격: 오름차순</option>
 							<option value="ASC" >가격: 내림차순</option>
 						</select>
-						<input type="submit" value="보기">
+						<input class="store-nav store-form-input" type="submit" value="보기">
 					</form>
 				</li>
 			</ul>
@@ -106,11 +106,11 @@
 		<!-- 게임 썸네일 -->
 		<c:choose>
 			<%--모든게임 가져오기 --%>
-			<c:when test="${storegamelist != null and fn:length(storegamelist) > 0 }">
+			<c:when test="${gamelist != null and fn:length(gamelist) > 0 }">
 				<div class="row row-cols-1 row-cols-md-6 g-4 store-row">
-					<c:forEach var="list" items="${storegamelist }">
+					<c:forEach var="list" items="${gamelist }">
 						<div class="col">
-							<a class="card h-100 store-card" href="/gamedetail.jsp"> 
+							<a class="card h-100 store-card" href="/game/detail?game_num=${list.gameDTO.game_num }"> 
 								<img src="/img/games/${list.imageDTO.image_main }" class="card-img-top" alt="...">
 								<div class="card-body store-card-body">
 									<h5 class="card-title">${list.gameDTO.game_name } </h5>
@@ -124,8 +124,8 @@
 			
 			<%--게임없을때 --%>
 			<c:otherwise>
-				<div>
-					<h3>찾으시는 게임 목록이 없습니다.</h3>
+				<div id="store-div-non">
+					<h3 class="store-div-h3">찾으시는 게임 목록이 없습니다.</h3>
 				</div>
 			</c:otherwise>
 		</c:choose>
@@ -143,7 +143,7 @@
 		
 		
 		$(".store-form-select").on("change", function(){
-
+			
 			
 				   
 			
