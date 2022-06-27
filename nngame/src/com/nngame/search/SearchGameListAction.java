@@ -16,13 +16,11 @@ public class SearchGameListAction implements Action{
 		
 		//param 받기
 		String keyword = request.getParameter("searchTerm");
-		System.out.println(keyword);
 		
 		// 검색된 게임수 가져오기
 		int totalCnt = sdao.getSearchGameCnt(keyword);
 		// 정렬하기
 		String sort = request.getParameter("store-sort");
-		System.out.println(sort);
 		
 		// 보내기
 		// 검색어
@@ -30,6 +28,9 @@ public class SearchGameListAction implements Action{
 		
 		// 게임수
 		request.setAttribute("totalCnt",totalCnt);
+		
+		// 정렬
+		request.setAttribute("sort", sort);
 		
 		// 검색된 게임리스트
 		if( sort == null || sort.equals("ABC") ) {
