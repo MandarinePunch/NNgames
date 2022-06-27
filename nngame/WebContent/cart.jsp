@@ -26,6 +26,7 @@
 	<c:set var="user" scope="session" value="${udto }" />
 	<c:set var="cartlist" scope="request" value="${cartgamelist }" />
 	<c:set var="totalPrice" value="0" />
+	<c:set var="discount" value="0" />
 	
 	<main class="cart-container">
 		<div class="cart-main">
@@ -55,7 +56,17 @@
 													<p>무료</p>
 												</c:when>
 												<c:otherwise>												
-													<p>&#92; ${cart.gameDTO.game_price }</p>
+													<c:choose>
+														<c:when test="${cart.gameDTO.game_discount == 0 }">
+															<p class="card-text">&#xFFE6; ${cart.gameDTO.game_price }</p>						
+														</c:when>
+														<c:otherwise>
+															<div style="display: flex">
+																<p class="card-text" style="text-decoration: line-through; color: rgba(255,255,255,0.5)">&#xFFE6; ${cart.gameDTO.game_price }</p>											
+																<p class="card-text">&nbsp;&rarr;&nbsp;&#xFFE6; ${cart.gameDTO.game_price - cart.gameDTO.game_discount }</p>											
+															</div>
+														</c:otherwise>
+													</c:choose>
 												</c:otherwise>
 											</c:choose>
 										</div>
@@ -70,6 +81,7 @@
 								</div>
 							</div>
 							<c:set var="totalPrice" value="${totalPrice + cart.gameDTO.game_price }" />
+							<c:set var="discount" value="${discount + cart.gameDTO.game_discount }" />
 						</c:forEach>
 					</div>
 					
@@ -82,17 +94,17 @@
 							</div>
 							<div class="cart-pay__price">
 								<h5>할인 금액</h5>
-								<h5>&#92; 0</h5>
+								<h5>&#92; ${discount }</h5>
 							</div>
 							<div class="cart-pay__price">
 								<h5>소계</h5>
-								<h5>&#92; ${totalPrice }</h5>
+								<h5>&#92; ${totalPrice - discount }</h5>
 							</div>
 						</div>
 						<div class="d-grid gap-2">
 							<%-- totalPrice를 pay에 넘겨줌 --%>
 							<div>					
-								<form action="/payment/pay?game_price=${totalPrice }" method="post" id="gamePaymentForm">						
+								<form action="/payment/pay?game_price=${totalPrice }&game_discount=${discount}" method="post" id="gamePaymentForm">						
 									<button class="btn submit-btn cart-pay__btn" type="submit">구매하기</button>
 									<input type="hidden" name="isCart" value="true" />
 								</form>

@@ -15,7 +15,8 @@ public class StoreGameListAction implements Action{
 		StoreDAO sdao = new StoreDAO();
 		
 		// param 가져오기
-		int genre = Integer.parseInt( request.getParameter("genre") );
+		String strGenre = request.getParameter("genre");
+		int genre = (strGenre != null) ? Integer.parseInt(strGenre) : 0;
 
 		// 전체 게임수 가져오기
 		int totalCnt = sdao.getStoreGameCnt();
@@ -44,7 +45,12 @@ public class StoreGameListAction implements Action{
 			}else if( sort.equals("ASC") ) {
 				request.setAttribute("gamelist", sdao.getSortListASC());
 				
-			}
+			}else if( sort.equals("DISCOUNT") ) {
+				totalCnt = sdao.getDiscountCnt();
+				request.setAttribute("totalCnt", totalCnt);
+				request.setAttribute("gamelist", sdao.getDiscountGame());
+				
+			}	
 		
 		// 장르게임리스트
 		}else{
@@ -59,17 +65,9 @@ public class StoreGameListAction implements Action{
 				
 			}else if( sort.equals("ASC") ) {
 				request.setAttribute("gamelist", sdao.getSortGenreASC(genre));
-				
-				
-			}
-			
-			
-			
-			
-			
-			
+					
+			}	
 		}
-		
 		
 		// forward방식으로 보내기
 		forward.setRedirect(false);

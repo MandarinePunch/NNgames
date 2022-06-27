@@ -21,6 +21,7 @@
 	<!-- payment 결제창 -->
 	<c:set var="totalPrice" scope="request" value="${game_price }" />
 	<c:set var="gameNum" scope="request" value="${game_num }" />
+	<c:set var="discount" scope="request" value="${game_discount }" />
 	
 	<main>
 	<!-- 카드사 선택 -->
@@ -76,11 +77,19 @@
 					<div class="payment__right-text">
 						<span>가격</span> <span>${totalPrice }원</span>
 					</div>
-					<div class="payment__right-text">
-						<span>할인금액</span> <span>0</span>
+					<div class="payment__right-text">					
+						<span>할인금액</span>
+						<c:choose>
+							<c:when test="${empty discount }">
+								<span>0원</span>
+							</c:when>
+							<c:otherwise>
+								<span>${discount }원</span>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div class="payment__right-text-sum">
-						<span>총금액</span> <span>${totalPrice }원</span>
+						<span>총금액</span> <span>${totalPrice - discount }원</span>
 					</div>
 					<div class="payment__submit-box">
 						<button type="submit" class="btn btn-secondary btn-sm submit-btn payment__submit-btn">결제하기</button>

@@ -15,6 +15,7 @@
 		<result column="GAME_REQUIRE" property="game_require"/>
 		<result column="GAME_AGELIMIT" property="game_agelimit"/>
 		<result column="CATE_NUM" property="cate_num"/>
+		<result column="GAME_DISCOUNT" property="game_discount"/>
 	</resultMap>
 	
 	<!-- 카테고리테이블 -->

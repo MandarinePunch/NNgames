@@ -1,6 +1,5 @@
 package com.nngame.store.dao;
 
-
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -67,9 +66,15 @@ public class StoreDAO {
 		return sortAsc;
 	}
 
+	// 할인된 게임만 가져오기
+	public List<StoreDTO> getDiscountGame() {
+		List<StoreDTO> sortAsc = sqlsession.selectList("Store.getDiscountGame");
+		return sortAsc;
+	}
 
-
-	
+	public int getDiscountCnt() {
+		return sqlsession.selectOne("Store.getDiscountCnt");
+	}
 
 
 	

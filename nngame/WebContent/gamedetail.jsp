@@ -36,9 +36,14 @@
 				alert("장바구니에 추가되었습니다.");
 			</script>
 		</c:when>
-		<c:when test="${success == false }">
+		<c:when test="${success == 'inLib' }">
 			<script>
-				alert("이미 있는 게임입니다.");
+				alert("이미 보유하고 계신 게임입니다.");
+			</script>
+		</c:when>
+		<c:when test="${success == 'inCart' }">
+			<script>
+				alert("장바구니에 담겨 있는 게임입니다.");
 			</script>
 		</c:when>
 	</c:choose>
@@ -91,12 +96,25 @@
 						<h5>가격 : 무료</h5>
 					</c:when>
 					<c:otherwise>
-						<h5>가격 : ${gamedetail.gameDTO.game_price }원</h5>
+						<c:choose>
+							<c:when test="${gamedetail.gameDTO.game_discount == 0 }">
+								<h5>가격 : &#xFFE6; ${gamedetail.gameDTO.game_price }원</h5>
+							</c:when>
+							<c:otherwise>
+								<div style="display: flex">
+									<c:set var="percent" value="${gamedetail.gameDTO.game_discount/gamedetail.gameDTO.game_price*100 }" />											
+									<h5>가격 :&nbsp;</h5>
+									<h5 style="text-decoration: line-through; color: rgba(255,255,255,0.5)">&#xFFE6; ${gamedetail.gameDTO.game_price }</h5>											
+									<h5>&nbsp;&rarr;&nbsp;&#xFFE6; ${gamedetail.gameDTO.game_price - gamedetail.gameDTO.game_discount }&nbsp;&nbsp;</h5>
+									<div class="card-text store-discount-percent">${fn:substringBefore(percent, ".")}%</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</c:otherwise>
 				</c:choose>
 				<form action="/cart/insert" method="post" id="gamePaymentForm">
 					<div class="detail__btn-box">
-						<button type="button" class="btn submit-btn detail__btn" onclick="goToPay(${gamedetail.gameDTO.game_price}, ${gamedetail.gameDTO.game_num })">바로 구매</button>
+						<button type="button" class="btn submit-btn detail__btn" onclick="goToPay(${gamedetail.gameDTO.game_price}, ${gamedetail.gameDTO.game_num }, ${gamedetail.gameDTO.game_discount })">바로 구매</button>
 					</div>
 					<div class="detail__btn-box">
 						<button type="button" class="btn submit-btn detail__btn" onclick="insertCart(${gamedetail.gameDTO.game_num})">장바구니에 담기</button>

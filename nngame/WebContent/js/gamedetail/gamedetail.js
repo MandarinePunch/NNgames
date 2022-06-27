@@ -23,10 +23,10 @@ function insertCart(gameNum){
 }
 
 // pay 페이지로 가기
-function goToPay(price, gameNum){
+function goToPay(price, gameNum, discount){
 	const payForm = document.getElementById("gamePaymentForm");
 	
-	payForm.action = "/payment/pay?game_price=" + price + "&game_num=" + gameNum;
+	payForm.action = "/payment/pay?game_price=" + price + "&game_num=" + gameNum + "&game_discount=" + discount;
 	payForm.submit();
 }
 

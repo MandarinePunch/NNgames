@@ -9,6 +9,7 @@
 		<result column="GAME_NAME" property="game_name"/>
 		<result column="GAME_PRICE" property="game_price"/>
 		<result column="CATE_NUM" property="cate_num"/>
+		<result column="GAME_DISCOUNT" property="game_discount"/>
 	</resultMap>
 	
 	<!-- ImageDTO resultMap -->
@@ -30,7 +31,7 @@
 	
 	<!-- cart에 불러올 정보 -->
 	<select id="getCartGamelist" parameterType="_int"  resultMap="cartMap">
-		SELECT   c.CART_NUM , c.CART_IN , c.USER_NUM , c.GAME_NUM , g.GAME_NAME , g.GAME_PRICE , gi.IMAGE_BANNER
+		SELECT   c.CART_NUM , c.CART_IN , c.USER_NUM , c.GAME_NUM , g.GAME_NAME , g.GAME_PRICE , g.GAME_DISCOUNT, gi.IMAGE_BANNER
 		FROM     CART c 
 	    	LEFT OUTER JOIN GAME g ON c.GAME_NUM = g.GAME_NUM 
 	    	LEFT OUTER JOIN GAME_IMAGE gi ON g.GAME_NUM = gi.IMAGE_NUM

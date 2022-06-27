@@ -15,6 +15,10 @@
 	text-align: center;
 }
 
+.main-icon:hover{
+	transform: scale(1.1);
+}
+
 /* 메인화면 배너 css */
 .main_img_size {
 	min-width: 1900px;

@@ -38,12 +38,6 @@ public class StoreFrontController extends HttpServlet{
 				break;
 		}
 		
-		
-		
-		
-		
-		
-		
 		if(forward != null) {			
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
@@ -52,11 +46,5 @@ public class StoreFrontController extends HttpServlet{
 				dis.forward(request, response);
 			}
 		}
-		
-		
-		
 	}
-	
-	
-	
 }

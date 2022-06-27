@@ -28,10 +28,13 @@ public class PaymentShowAction implements Action{
 		
 		String isCart = request.getParameter("isCart");
 		String game_price = request.getParameter("game_price");
+		String game_discount = request.getParameter("game_discount");
 		
 		// 로그인 여부 체크
 		if(udto != null) {
-			if(isCart == null) {	// 게임 상세에서 바로 접근
+			
+			// 게임 상세에서 바로 접근
+			if(isCart == null) {
 				boolean libFlag = false;
 				boolean cartFlag = false;
 				int user_num = udto.getUser_num();
@@ -42,39 +45,52 @@ public class PaymentShowAction implements Action{
 				int game_num = Integer.parseInt(request.getParameter("game_num"));
 				
 				// 라이브러리에 있는지 체크
-				for(int gameNum : alreadyInLib) {
-					if(game_num == gameNum) {
-						libFlag = true;
-						break;
+				if(alreadyInLib != null) {					
+					for(int gameNum : alreadyInLib) {
+						if(game_num == gameNum) {
+							libFlag = true;
+							break;
+						}
 					}
 				}
 				// 카트에 있는지 체크
-				for(int gameNum : alreadyInCart) {
-					if(game_num == gameNum) {
-						cartFlag = true;
-						break;
+				if(alreadyInCart != null) {					
+					for(int gameNum : alreadyInCart) {
+						if(game_num == gameNum) {
+							cartFlag = true;
+							break;
+						}
 					}
 				}
 				
-				// lib에 있는 게임인지 체크
-				if(!libFlag && !cartFlag) {	// lib에 없는 게임일 때
+				// 라이브러리 및 장바구니에 해당 게임 없음
+				if(!libFlag && !cartFlag) {
 					request.setAttribute("game_price", game_price);
 					request.setAttribute("game_num", game_num);
-					
+					request.setAttribute("game_discount", game_discount);
 					forward.setPath("/payment_jsp/payment.jsp");
-					forward.setRedirect(false);				
-				} else {	// lib에 있는 게임일 때
-					request.setAttribute("success", false); // 값을 바꿔보자
+					
+				// 라이브러리에 게임 존재
+				} else if(libFlag){	
+					request.setAttribute("success", "inLib");
 					forward.setPath("/game/detail?game_num=" + game_num);
-					forward.setRedirect(false);
+					
+				// 장바구니에 게임 존재
+				} else if(cartFlag) {
+					request.setAttribute("success", "inCart");
+					forward.setPath("/game/detail?game_num=" + game_num);
 				}
-			} else {	// 장바구니에서 접근
+				
+			// 장바구니에서 접근
+			} else {
 				request.setAttribute("game_price", game_price);
+				request.setAttribute("game_discount", game_discount);
 				
 				forward.setPath("/payment_jsp/payment.jsp");
-				forward.setRedirect(false);
 			}
-
+			
+			forward.setRedirect(false);
+			
 		} else {
 			forward.setPath("/user/login");
 			forward.setRedirect(true);

@@ -10,6 +10,7 @@ public class GameDTO {
 	private String game_require;
 	private int game_agelimit;
 	private int cate_num;
+	private int game_discount;
 	public int getGame_num() {
 		return game_num;
 	}
@@ -64,4 +65,11 @@ public class GameDTO {
 	public void setCate_num(int cate_num) {
 		this.cate_num = cate_num;
 	}
+	public int getGame_discount() {
+		return game_discount;
+	}
+	public void setGame_discount(int game_discount) {
+		this.game_discount = game_discount;
+	}
+	
 }

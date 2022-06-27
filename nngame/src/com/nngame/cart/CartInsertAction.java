@@ -34,31 +34,42 @@ public class CartInsertAction implements Action{
 		
 		if(user_num != -1) {
 			// 이미 있는 게임인지 확인 flag
-			boolean flag = false;
+			boolean cartFlag = false;
 			// 라이브러리에 있는 게임인지 확인 flag
 			boolean libFlag = false;
 			
 			// 이미 있다면 flag를 true로
-			for(int gameNum : alreadyInsertGame) {
-				if(gameNum == game_num) {
-					flag = true;
-					break;
+			if(alreadyInsertGame != null) {				
+				for(int gameNum : alreadyInsertGame) {
+					if(gameNum == game_num) {
+						cartFlag = true;
+						break;
+					}
 				}
 			}
 			// 이미 있다면 flag를 true로
-			for(int gameNum : alreadyInLib) {
-				if(gameNum == game_num) {
-					libFlag = true;
-					break;
+			if(alreadyInLib != null) {				
+				for(int gameNum : alreadyInLib) {
+					if(gameNum == game_num) {
+						libFlag = true;
+						break;
+					}
 				}
 			}
 			
-			// 장바구니에 없는 게임이라면 insert
-			if(!flag && !libFlag) {			
+			// 라이브러리 및 장바구니에 해당 게임 없음
+			if(!cartFlag && !libFlag) {			
 				cdao.insertCart(game_num, user_num);
-				request.setAttribute("success", true);	
-			} else {
-				request.setAttribute("success", false);
+				request.setAttribute("success", true);
+				
+			// 라이브러리에 게임 존재
+			} else if(libFlag) {
+				request.setAttribute("success", "inLib");
+				
+			// 장바구니에 게임 존재
+			} else if(cartFlag) {
+				request.setAttribute("success", "inCart");
+			
 			}
 			
 			forward.setPath("/game/detail?game_num=" + game_num);

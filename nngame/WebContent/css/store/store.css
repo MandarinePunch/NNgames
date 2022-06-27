@@ -43,7 +43,17 @@
 .search-input { background: #202020; border: none; color: #e6e6e6; }
 .search-input:focus { color: #e6e6e6; background: #202020; border: none; outline: none;}
 
-
+/* 할인율 보여주는 div */
+.store-discount-percent{
+	background-color: #5FBD20;
+	width: 50px;
+	height: 30px;
+	border-radius: 5px;
+	font-weight: bold;
+	color: black;
+	text-align: center;
+	padding-top: 2px;
+}
 
 
 
