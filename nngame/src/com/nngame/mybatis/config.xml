@@ -16,6 +16,7 @@
 		<typeAlias type="com.nngame.cart.dao.CartDTO" alias="CartDTO"/>
 		<typeAlias type="com.nngame.gamedetail.dao.GameDetailDTO" alias="GameDetailDTO"/>
 		<typeAlias type="com.nngame.review.dto.ReviewDTO" alias="ReviewDTO"/>
+		<typeAlias type="com.nngame.library.dao.LibraryDTO" alias="LibraryDTO"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -40,6 +41,7 @@
 		<mapper resource="com/nngame/sql/cart.xml" />
 		<mapper resource="com/nngame/sql/gamedetail.xml" />
 		<mapper resource="com/nngame/sql/payment.xml" />
+		<mapper resource="com/nngame/sql/library.xml" />
 
 	</mappers>
 </configuration>

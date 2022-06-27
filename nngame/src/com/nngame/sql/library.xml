@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Library">
+
+	<!-- GameDTO resultMap -->
+	<resultMap type="GameDTO" id="gameMap">
+		<id column="GAME_NUM" property="game_num"/>
+		<result column="GAME_NAME" property="game_name"/>
+		<result column="GAME_PRICE" property="game_price"/>
+		<result column="GAME_DEVELOPER" property="game_developer"/>
+		<result column="GAME_RELEASE" property="game_release"/>
+		<result column="GAME_DETAIL" property="game_detail"/>
+		<result column="GAME_REQUIRE" property="game_require"/>
+		<result column="GAME_AGELIMIT" property="game_agelimit"/>
+		<result column="CATE_NUM" property="cate_num"/>
+	</resultMap>
+
+	<!-- ImageDTO resultMap -->
+	<resultMap type="ImageDTO" id="imageMap">
+		<id column="IMAGE_NUM" property="image_num"/>
+		<result column="GAME_NUM" property="game_num"/>
+		<result column="IMAGE_MAIN" property="image_main"/>
+		<result column="IMAGE_BANNER" property="image_banner"/>
+		<result column="IMAGE_SCREEN1" property="image_screen1"/>
+		<result column="IMAGE_SCREEN2" property="image_screen2"/>
+		<result column="IMAGE_SCREEN3" property="image_screen3"/>
+		<result column="IMAGE_SCREEN4" property="image_screen4"/>
+	</resultMap>
+	
+	<!-- LibraryDTO resultMap -->
+	<resultMap type="LibraryDTO" id="libraryMap">
+		<id column="LIB_NUM" property="lib_num"/>
+		<result column="GAME_NUM" property="game_num"/>
+		<result column="USER_NUM" property="user_num"/>
+		<result column="LIB_PLAYTIME" property="lib_playtime"/>
+		<collection property="gameDTO" resultMap="gameMap"/>
+		<collection property="imageDTO" resultMap="imageMap"/>
+	</resultMap>
+	
+	<!-- 총 게임수 -->
+	<select id="getTotalCnt" resultType="_int">
+		SELECT COUNT(*) FROM LIBRARY 
+	</select>
+	
+	<!-- 게임명,게임이미지 -->
+<!-- 	<select id="getLibraryList" resultMap="libraryMap"> -->
+<!-- 		SELECT 	g.GAME_NAME, gi.IMAGE_BANNER, l.LIB_PLAYTIME -->
+<!-- 		FROM 	LIBRARY l  -->
+<!-- 			LEFT OUTER JOIN GAME g			ON l.GAME_NUM = g.GAME_NUM -->
+<!-- 			LEFT OUTER JOIN GAME_IMAGE gi 	ON g.GAME_NUM = gi.GAME_NUM -->
+<!-- 		ORDER BY g.GAME_NAME	 -->
+<!-- 	</select> -->
+
+	<select id="getLibraryList" parameterType="_int" resultMap="libraryMap">
+		SELECT 	g.GAME_NAME, gi.IMAGE_BANNER, l.LIB_PLAYTIME, l.USER_NUM
+		FROM 	LIBRARY l 
+			LEFT OUTER JOIN GAME g			ON l.GAME_NUM = g.GAME_NUM
+			LEFT OUTER JOIN GAME_IMAGE gi 	ON g.GAME_NUM = gi.GAME_NUM
+		WHERE l.USER_NUM = #{user_num}
+		ORDER BY g.GAME_NAME	
+	</select>
+</mapper>
