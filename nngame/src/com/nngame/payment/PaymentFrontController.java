@@ -33,6 +33,9 @@ public class PaymentFrontController extends HttpServlet{
 		} else if(requestURI.equals("/payment/payOk.io")) {	// 결제 완료 후 insert
 			forward = new PaymentAction().execute(request, response);
 			
+		} else if(requestURI.equals("/payment/payOk")) {
+			forward = new ActionForward(false, "/payment_jsp/paycomplete.jsp");
+			
 		}
 		
 		if(forward != null) {

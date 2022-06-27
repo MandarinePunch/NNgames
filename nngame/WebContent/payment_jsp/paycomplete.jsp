@@ -25,8 +25,7 @@
 		<!-- 라이브러리 이동 입력 필요 -->
 		<div class="payment-complete__btn-box">
 			<button type="submit" class="btn submit-btn payment-complete__btn"
-				onclick="javascript: ">라이브러리로
-				이동</button>
+				onclick="location.href='/library/librarylist'">라이브러리로 이동</button>
 		</div>
 	</div>
 	</main>

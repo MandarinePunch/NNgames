@@ -1,6 +1,5 @@
 package com.nngame.library.dao;
 
-import com.nngame.game.dto.CategoryDTO;
 import com.nngame.game.dto.GameDTO;
 import com.nngame.game.dto.ImageDTO;
 

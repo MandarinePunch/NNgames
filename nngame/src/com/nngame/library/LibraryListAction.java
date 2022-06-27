@@ -17,12 +17,6 @@ public class LibraryListAction implements Action{
 		ActionForward forward = new ActionForward();
 		LibraryDAO ldao = new LibraryDAO();
 		
-//		// 게임명
-//		request.setAttribute("libraryList", ldao.getLibraryList());
-//		
-//		forward.setRedirect(false);
-//		forward.setPath(request.getContextPath()+"/library.jsp");
-		
 		// 로그인한 유저 세션 가져오기
 		HttpSession session = request.getSession();
 		UserDTO udto = (UserDTO) session.getAttribute("udto");
@@ -35,7 +29,11 @@ public class LibraryListAction implements Action{
 			user_num = udto.getUser_num();
 			System.out.println("user_num :"+user_num); // 에러 추적 과정
 			
+			int count = ldao.getTotalCnt(user_num);
+			System.out.println("count : " + count);
+			
 			request.setAttribute("libraryList", ldao.getLibraryList(user_num));
+			request.setAttribute("totalCnt", count);
 			
 			forward.setRedirect(false);
 			forward.setPath("/library.jsp");
@@ -43,10 +41,6 @@ public class LibraryListAction implements Action{
 			forward.setRedirect(true);
 			forward.setPath("/");
 		}
-		
-		// 전체 게임 수
-		int totalCnt = ldao.getTotalCnt();
-		request.setAttribute("totalCnt", totalCnt);
 		
 		return forward;
 	}

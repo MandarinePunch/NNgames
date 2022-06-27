@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.nngame.action.Action;
 import com.nngame.action.ActionForward;
 import com.nngame.cart.dao.CartDAO;
+import com.nngame.library.dao.LibraryDAO;
 import com.nngame.user.dao.UserDTO;
 
 public class CartInsertAction implements Action{
@@ -24,15 +25,18 @@ public class CartInsertAction implements Action{
 		int game_num = Integer.parseInt(request.getParameter("game_num"));
 		
 		CartDAO cdao = new CartDAO();
+		LibraryDAO ldao = new LibraryDAO();
 		
 		// 현재 유저의 장바구니에 있는 게임을 불러옴
 		List<Integer> alreadyInsertGame = cdao.getGameNum(user_num);
-		
 		// 라이브러리도 똑같이 가져와서 이미 있는 게임이라면 못담게 해주자
+		List<Integer> alreadyInLib = ldao.getGameNum(user_num);
 		
 		if(user_num != -1) {
 			// 이미 있는 게임인지 확인 flag
 			boolean flag = false;
+			// 라이브러리에 있는 게임인지 확인 flag
+			boolean libFlag = false;
 			
 			// 이미 있다면 flag를 true로
 			for(int gameNum : alreadyInsertGame) {
@@ -41,9 +45,16 @@ public class CartInsertAction implements Action{
 					break;
 				}
 			}
+			// 이미 있다면 flag를 true로
+			for(int gameNum : alreadyInLib) {
+				if(gameNum == game_num) {
+					libFlag = true;
+					break;
+				}
+			}
 			
 			// 장바구니에 없는 게임이라면 insert
-			if(!flag) {			
+			if(!flag && !libFlag) {			
 				cdao.insertCart(game_num, user_num);
 				request.setAttribute("success", true);	
 			} else {

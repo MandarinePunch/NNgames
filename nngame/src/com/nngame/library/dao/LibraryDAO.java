@@ -15,23 +15,33 @@ public class LibraryDAO {
 		sqlsession = factory.openSession(true);
 	}
 	
-	public int getTotalCnt() {
-		int cnt = sqlsession.selectOne("Library.getTotalCnt");
-		System.out.println("getTotalCnt :"+cnt);	// 에러 추적 과정
-		return sqlsession.selectOne("Library.getTotalCnt");
-	}
-
-//	public List<LibraryDTO> getLibraryList() {
-//		System.out.println("getLibraryList도착");		// 에러 추적 과정
-//		List<LibraryDTO> LibraryList = sqlsession.selectList("Library.getLibraryList");
-//		
-//		return LibraryList;
-//	}
-	
+	// 라이브러리 리스트
 	public List<LibraryDTO> getLibraryList(int user_num) {
 		System.out.println("getLibraryList도착");		// 에러 추적 과정
 		List<LibraryDTO> LibraryList = sqlsession.selectList("Library.getLibraryList", user_num);
 		
 		return LibraryList;
 	}
+	
+	// 라이브러리 개수
+	public int getTotalCnt(int user_num) {
+		int result = sqlsession.selectOne("Library.getTotalCnt", user_num);
+		
+		return result;
+	}
+	
+	public List<Integer> getGameNum(int user_num){
+		List<Integer> list = sqlsession.selectList("Library.getGameNum", user_num);
+		
+		return list;
+	}
+	
 }
+
+
+
+
+
+
+
+

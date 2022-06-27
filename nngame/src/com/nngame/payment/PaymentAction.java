@@ -17,6 +17,7 @@ public class PaymentAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
+		// 결제가 완료되었을 때
 		ActionForward forward = new ActionForward();
 		HttpSession session = request.getSession();
 		
@@ -50,7 +51,7 @@ public class PaymentAction implements Action{
 				cdao.deleteAllCart(user_num);
 			}
 			
-			forward.setPath("/payment_jsp/paycomplete.jsp");
+			forward.setPath("/payment/payOk");
 		} else {
 			forward.setPath("/user/login");
 		}

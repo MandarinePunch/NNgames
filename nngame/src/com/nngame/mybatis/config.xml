@@ -42,6 +42,5 @@
 		<mapper resource="com/nngame/sql/gamedetail.xml" />
 		<mapper resource="com/nngame/sql/payment.xml" />
 		<mapper resource="com/nngame/sql/library.xml" />
-
 	</mappers>
 </configuration>

@@ -39,26 +39,22 @@
 		<collection property="imageDTO" resultMap="imageMap"/>
 	</resultMap>
 	
-	<!-- 총 게임수 -->
-	<select id="getTotalCnt" resultType="_int">
-		SELECT COUNT(*) FROM LIBRARY 
-	</select>
-	
-	<!-- 게임명,게임이미지 -->
-<!-- 	<select id="getLibraryList" resultMap="libraryMap"> -->
-<!-- 		SELECT 	g.GAME_NAME, gi.IMAGE_BANNER, l.LIB_PLAYTIME -->
-<!-- 		FROM 	LIBRARY l  -->
-<!-- 			LEFT OUTER JOIN GAME g			ON l.GAME_NUM = g.GAME_NUM -->
-<!-- 			LEFT OUTER JOIN GAME_IMAGE gi 	ON g.GAME_NUM = gi.GAME_NUM -->
-<!-- 		ORDER BY g.GAME_NAME	 -->
-<!-- 	</select> -->
-
+	<!-- 라이브러리 리스트 가져오기 -->
 	<select id="getLibraryList" parameterType="_int" resultMap="libraryMap">
 		SELECT 	g.GAME_NAME, gi.IMAGE_BANNER, l.LIB_PLAYTIME, l.USER_NUM
 		FROM 	LIBRARY l 
 			LEFT OUTER JOIN GAME g			ON l.GAME_NUM = g.GAME_NUM
 			LEFT OUTER JOIN GAME_IMAGE gi 	ON g.GAME_NUM = gi.GAME_NUM
 		WHERE l.USER_NUM = #{user_num}
-		ORDER BY g.GAME_NAME	
+		ORDER BY g.GAME_NAME asc
+	</select>
+	
+	<!-- 총 게임수 -->
+	<select id="getTotalCnt" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM LIBRARY WHERE USER_NUM = #{user_num}
+	</select>
+	
+	<select id="getGameNum" parameterType="_int" resultType="_int">
+		SELECT GAME_NUM FROM LIBRARY l WHERE USER_NUM = #{user_num}
 	</select>
 </mapper>

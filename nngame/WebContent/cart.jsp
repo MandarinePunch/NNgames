@@ -50,7 +50,14 @@
 									<div class="cart-box__info">
 										<div class="cart-box__text">
 											<h5>${cart.gameDTO.game_name }</h5>
-											<p>&#92; ${cart.gameDTO.game_price }</p>
+											<c:choose>
+												<c:when test="${cart.gameDTO.game_price == 0 }">
+													<p>무료</p>
+												</c:when>
+												<c:otherwise>												
+													<p>&#92; ${cart.gameDTO.game_price }</p>
+												</c:otherwise>
+											</c:choose>
 										</div>
 										<div class="cart-box__delete">
 											<form action="/cart/delete" method="post" id="cartDeleteForm">								
@@ -87,6 +94,7 @@
 							<div>					
 								<form action="/payment/pay?game_price=${totalPrice }" method="post" id="gamePaymentForm">						
 									<button class="btn submit-btn cart-pay__btn" type="submit">구매하기</button>
+									<input type="hidden" name="isCart" value="true" />
 								</form>
 							</div>
 						</div>

@@ -45,7 +45,14 @@
 							<img src="/img/games/${list.imageDTO.image_main }" class="card-img-top" alt="...">
 							<div class="card-body store-card-body">
 								<h5 class="card-title">${list.gameDTO.game_name } </h5>
-								<p class="card-text">&#xFFE6; ${list.gameDTO.game_price }</p>
+								<c:choose>
+									<c:when test="${list.gameDTO.game_price == 0 }">
+										<p class="card-text">무료</p>
+									</c:when>
+									<c:otherwise>
+										<p class="card-text">&#xFFE6; ${list.gameDTO.game_price }</p>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</a>
 					</div>
