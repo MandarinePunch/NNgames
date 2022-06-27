@@ -27,7 +27,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item header__nav-item"><a class="nav-link active"
-							aria-current="page" href="/store/Storegamelist">스토어</a></li>
+							aria-current="page" href="/store/Storegamelist?genre=0">스토어</a></li>
 						<li class="nav-item header__nav-item">	
 							<a class="nav-link active" aria-current="page" 
 							href="/support/List">고객지원</a>
@@ -39,10 +39,10 @@
 						</c:if>
 						
 					</ul>
-					<form class="d-flex">
+					<form action="/search/Searchgamelist" class="d-flex" name="searchFormHearder" onsubmit="checkFormHeader(); return false;">
 						<input class="header__search me-2" type="search"
-							placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success" type="submit">
+							placeholder="검색어를 입력하세요" aria-label="Search" name="searchTerm">
+						<button class="btn btn-outline-success" type="submit"  >
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</button>
 					</form>
@@ -89,11 +89,17 @@
 		</nav>
 	</header>
 	
+	
+	<!-- search에 검색어 validation 체크 -->
+	<script src="/js/search/search.js"></script>
+	
 	<!-- 쓰실 분들 쓰셔도 됩니다 -->
 	<script>
 		function pleaseLogin() {
 			alert("로그인이 필요한 서비스입니다.");
 		}
+		
+		
 	</script>
 	
 	<!-- fontawesome 아이콘 (fontawesome 아이콘 쓰고 싶으면 이 스크립트 복붙해서 쓰면 됩니다.) -->
