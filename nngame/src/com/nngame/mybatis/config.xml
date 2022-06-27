@@ -38,6 +38,5 @@
 		<mapper resource="com/nngame/sql/search.xml" />
 		<mapper resource="com/nngame/sql/cart.xml" />
 		<mapper resource="com/nngame/sql/library.xml" />
-		
 	</mappers>
 </configuration>
