@@ -25,22 +25,23 @@ public class StoreGameListAction implements Action{
 		String sort = request.getParameter("store-sort");
 		
 		// 보내기
+		// 정렬
+		request.setAttribute("sort", sort);
+		// 장르
+		request.setAttribute("genre", genre);
+		
 		// 전체게임리스트
 		if( genre == 0 ) {
 			// 게임수
 			request.setAttribute("totalCnt", totalCnt);
 			
-			
 			if( sort == null || sort.equals("ABC") ) {
-				System.out.println(sort+"전체사전순");
 				request.setAttribute("gamelist", sdao.getStoreGameList());
 				
 			}else if( sort.equals("DESC") ){
-				System.out.println(sort+"전체오름순");
 				request.setAttribute("gamelist", sdao.getSortListDESC());
 				
 			}else if( sort.equals("ASC") ) {
-				System.out.println(sort+"전체내림순");
 				request.setAttribute("gamelist", sdao.getSortListASC());
 				
 			}
@@ -51,16 +52,12 @@ public class StoreGameListAction implements Action{
 			request.setAttribute("totalCnt", genreCnt);
 			
 			if( sort == null || sort.equals("ABC") ) {
-				System.out.println("장르사전순");
 				request.setAttribute("gamelist", sdao.getGenreList(genre));
 				
 			}else if( sort.equals("DESC") ){
-				System.out.println("장르오름순");
 				request.setAttribute("gamelist", sdao.getSortGenreDESC(genre));
 				
-				
 			}else if( sort.equals("ASC") ) {
-				System.out.println("장르내림순");
 				request.setAttribute("gamelist", sdao.getSortGenreASC(genre));
 				
 				
@@ -76,7 +73,7 @@ public class StoreGameListAction implements Action{
 		
 		// forward방식으로 보내기
 		forward.setRedirect(false);
-		forward.setPath( request.getContextPath() + "/store.jsp" );
+		forward.setPath( request.getContextPath() + "/store.jsp?sort="+sort );
 		
 		return forward;
 	}

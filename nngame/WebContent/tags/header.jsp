@@ -85,25 +85,15 @@
 		</nav>
 	</header>
 	
+	
+	<!-- search에 검색어 validation 체크 -->
+	<script src="/js/search/search.js"></script>
+	
 	<!-- 쓰실 분들 쓰셔도 됩니다 -->
 	<script>
 		function pleaseLogin() {
 			alert("로그인이 필요한 서비스입니다.");
 		}
-		
-		// 검색어입력체크
-		function checkFormHeader(){
-			let frmHd = document.searchFormHearder;
-			
-			if( !frmHd.searchTerm.value ){
-			      alert('검색어를 입력해 주세요');
-			      frmHd.searchTerm.focus();
-			      return false;
-			}
-			
-			frmHd.submit();
-		}
-		
 		
 		
 	</script>
