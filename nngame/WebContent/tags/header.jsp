@@ -32,8 +32,12 @@
 							<a class="nav-link active" aria-current="page" 
 							href="/support/List">고객지원</a>
 						</li>
+						
+						<c:if test="${not empty udto }">
 						<li class="nav-item header__nav-item"><a class="nav-link active"
-							aria-current="page" href="/library.jsp">라이브러리</a></li>
+							aria-current="page" href="/library/librarylist">라이브러리</a></li>
+						</c:if>
+						
 					</ul>
 					<form class="d-flex">
 						<input class="header__search me-2" type="search"
