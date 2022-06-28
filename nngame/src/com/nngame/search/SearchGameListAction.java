@@ -42,6 +42,12 @@ public class SearchGameListAction implements Action{
 		}else if( sort.equals("ASC") ) {
 			request.setAttribute("gamelist", sdao.getSearchListASC(keyword));
 			
+		}else if( sort.equals("DISCOUNT")){
+			totalCnt = sdao.getSearchDiscountCnt(keyword);
+			request.setAttribute("totalCnt",totalCnt);
+			
+			request.setAttribute("gamelist", sdao.getSearchDiscount(keyword));
+			
 		}
 		
 		

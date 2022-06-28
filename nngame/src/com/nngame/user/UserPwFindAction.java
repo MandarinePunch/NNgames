@@ -1,6 +1,5 @@
 package com.nngame.user;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,7 +29,6 @@ public class UserPwFindAction implements Action{
 			request.getSession().setAttribute("findout", findout);
 			
 			//////////////////////////////////////////////
-			String host = "http://localhost:9090/user/findpw";
 			String from = "qkrwnsgh345@naver.com";
 			String to = user_email;
 			
@@ -73,7 +71,7 @@ public class UserPwFindAction implements Action{
 				ses.setDebug(true);
 				MimeMessage msg = new MimeMessage(ses);
 				msg.setSubject("nngames 임시비밀번호 입니다.");
-				Address fromAddr = new InternetAddress(from);
+				Address fromAddr = new InternetAddress(from, "NNgame");
 				msg.setFrom(fromAddr);
 				Address toAddr = new InternetAddress(to);
 				msg.addRecipient(Message.RecipientType.TO, toAddr);
