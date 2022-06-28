@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nngame.action.Action;
 import com.nngame.action.ActionForward;
+import com.nngame.encrypt.SHA256;
 import com.nngame.user.dao.UserDAO;
 import com.nngame.user.dao.UserDTO;
 
@@ -28,7 +29,8 @@ public class UserJoinAction implements Action{
 		
 		//시퀀스, #{userid}, #{userpw}, #{usernickname}, #{userphone}, #{userbirth}, SYSDATE 
 		user.setUser_email(request.getParameter("user_email"));
-		user.setUser_pwd(request.getParameter("user_pwd"));
+		// 비밀번호 해싱
+		user.setUser_pwd(SHA256.getSHA256(request.getParameter("user_pwd")));
 		user.setUser_nickname(request.getParameter("user_nickname"));
 		user.setUser_phone(request.getParameter("user_phone"));
 		user.setUser_birth(request.getParameter("user_birth"));

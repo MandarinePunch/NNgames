@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nngame.action.Action;
 import com.nngame.action.ActionForward;
+import com.nngame.encrypt.SHA256;
 import com.nngame.user.dao.UserDAO;
 
 import javax.mail.*;
@@ -64,6 +65,8 @@ public class UserPwFindAction implements Action{
                     break;
                 }
             }
+            // 일회용 비밀번호
+            String oneOffPassword = "";
             
 			try {
 				Authenticator auth = new NaverMail();
@@ -75,14 +78,23 @@ public class UserPwFindAction implements Action{
 				msg.setFrom(fromAddr);
 				Address toAddr = new InternetAddress(to);
 				msg.addRecipient(Message.RecipientType.TO, toAddr);
-				msg.setContent("임시 비밀번호 : " + temp.toString(), "text/html;charset=UTF8");
+				//일회용 비밀번호 부여
+				oneOffPassword = temp.toString();
+				
+				msg.setContent("임시 비밀번호 : " + oneOffPassword, "text/html;charset=UTF8");
 				Transport.send(msg);
 			} catch (Exception e) {
 				System.out.println("이메일 발송 오류");
 			}
 			//////////////////////////////////////////////
 			
-			udao.modPw(user_email, temp.toString());
+			System.out.println("해싱 전 비밀번호 : " + oneOffPassword);
+			// 비밀번호 해싱
+			oneOffPassword = SHA256.getSHA256(oneOffPassword);
+			System.out.println("해싱 후 비밀번호 : " + oneOffPassword);
+			
+			// 해싱된 비밀번호로 db에 수정
+			udao.modPw(user_email, oneOffPassword);
 			
 		} else {
 			request.setAttribute("findout", "아이디가 없습니다.");

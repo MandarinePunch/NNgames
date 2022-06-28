@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nngame.action.Action;
 import com.nngame.action.ActionForward;
+import com.nngame.encrypt.SHA256;
 import com.nngame.user.dao.UserDAO;
 import com.nngame.user.dao.UserDTO;
 
@@ -19,7 +20,8 @@ public class UserExitAction implements Action{
 		ActionForward forward = new ActionForward();
 		
 		String user_email = request.getParameter("user_email");
-		String user_pwd = request.getParameter("user_pwd");
+		// 비밀번호 해싱
+		String user_pwd = SHA256.getSHA256(request.getParameter("user_pwd"));
 		
 		if(udao.login(user_email,user_pwd)) {		// 로그인 성공하면 회원삭제 실행
 			System.out.println("패스워드 일치, 회원탈퇴 시작");

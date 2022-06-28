@@ -39,18 +39,13 @@
 		<!-- 정렬하기 + 총개수  -->
 		<!-- 게임 썸네일 -->
 		<%@ include file="/tags/store-search.jsp"%>
-
-		
-		
 	</main>
-	
 	
 	<!-- footer -->
 	<%@ include file="/tags/footer.jsp"%>
 	
 	<!-- 검색어 validation 체크 -->
 	<script src="/js/search/search.js"></script>
-
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

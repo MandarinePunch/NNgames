@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nngame.action.Action;
 import com.nngame.action.ActionForward;
+import com.nngame.encrypt.SHA256;
 import com.nngame.user.dao.UserDAO;
 import com.nngame.user.dao.UserDTO;
 
@@ -25,7 +26,8 @@ public class UserLoginOkAction implements Action{
 		}
 		
 		String userid = request.getParameter("user_email");
-		String userpw = request.getParameter("user_pwd");
+		// 비밀번호 해싱
+		String userpw = SHA256.getSHA256(request.getParameter("user_pwd"));
 		
 		if(udao.login(userid,userpw)) {		// 로그인 성공
 			System.out.println("로그인 성공");

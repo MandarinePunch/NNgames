@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nngame.action.Action;
 import com.nngame.action.ActionForward;
+import com.nngame.encrypt.SHA256;
 import com.nngame.user.dao.UserDAO;
 import com.nngame.user.dao.UserDTO;
 
@@ -19,8 +20,9 @@ public class UserModPwAction implements Action{
 		UserDAO udao = new UserDAO();
 		
 		String user_email = request.getParameter("modid");
-		String user_beforepw = request.getParameter("modpw");
-		String user_pwd = request.getParameter("modnewpw");
+		// 비밀번호 해싱
+		String user_beforepw = SHA256.getSHA256(request.getParameter("modpw"));
+		String user_pwd = SHA256.getSHA256(request.getParameter("modnewpw"));
 		
 		PrintWriter out;
 		
