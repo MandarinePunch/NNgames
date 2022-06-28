@@ -42,4 +42,10 @@
 	<select id="islinked" parameterType="String" resultType="String">
 		SELECT USER_PWD FROM USERINFO WHERE USER_EMAIL = #{user_email}
 	</select>
+	
+	<!-- 회원가입 이메일 중복 체크 -->
+	<select id="emailcheck" parameterType="UserDTO" resultType="_int">
+		SELECT COUNT(*) FROM USERINFO WHERE USER_EMAIL = #{user_email}
+	</select>
+	
 </mapper>

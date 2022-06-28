@@ -10,6 +10,9 @@ function checkLogin() {
 	} else if (pw == "") {
 		document.getElementById("login_ppw").innerHTML = "비밀번호를 입력해주세요.";
 		return false;
+	} else if (pw.length < 4) {
+		document.getElementById("login_ppw").innerHTML = "비밀번호는 4글자이상입니다.";
+		return false;
 	} else {
 		return true;
 	}

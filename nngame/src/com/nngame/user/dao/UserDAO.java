@@ -19,8 +19,12 @@ public class UserDAO {
 	public boolean join(UserDTO user) {
 		boolean result = false;
 		
-		if(sqlsession.insert("Users.join", user) != 0) {
-			result = true;
+		if((int)sqlsession.selectOne("Users.emailcheck", user) != 0) {
+			result = false;
+		} else {
+			if(sqlsession.insert("Users.join", user) != 0) {
+				result = true;
+			}
 		}
 		
 		return result;
