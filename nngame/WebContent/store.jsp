@@ -21,7 +21,7 @@
 	<c:set var="genre" scope="request" value="${genre }"/>
 	
 	
-<%-- 	<c:set var="genrelist" scope="request" value="${genrelist }"/> --%>
+<%-- <c:set var="genrelist" scope="request" value="${genrelist }"/> --%>
 	
 	<!-- header -->
 	<%@ include file="/tags/header.jsp"%>

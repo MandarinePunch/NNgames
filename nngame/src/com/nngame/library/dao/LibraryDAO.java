@@ -30,6 +30,7 @@ public class LibraryDAO {
 		return result;
 	}
 	
+	// 게임 번호 가져옴
 	public List<Integer> getGameNum(int user_num){
 		List<Integer> list = sqlsession.selectList("Library.getGameNum", user_num);
 		

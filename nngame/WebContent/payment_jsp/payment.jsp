@@ -65,7 +65,7 @@
 						<p id="pcardDate" class="pay_pred"></p>
 					</div>
 					<div class="payment__input-box">
-						<label for="cardPw" class="payment__left-text" id="card">비밀번호</label>
+						<label for="cardPw" class="payment__left-text" id="card">카드 비밀번호</label>
 						<input type="password" class="form-control" id="cardPw" placeholder="비밀번호" onblur="card_focusOut()" maxlength="4" minlength="4">
 						<p id="pcardPw" class="pay_pred"></p>
 					</div>
