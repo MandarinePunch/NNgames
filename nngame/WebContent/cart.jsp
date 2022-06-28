@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!Doctype html>
 <html lang="en">
 <head>
@@ -62,9 +63,11 @@
 														</c:when>
 														<c:otherwise>
 															<div style="display: flex">
-																<p class="card-text" style="text-decoration: line-through; color: rgba(255,255,255,0.5)">&#xFFE6; ${cart.gameDTO.game_price }</p>											
-																<p class="card-text">&nbsp;&rarr;&nbsp;&#xFFE6; ${cart.gameDTO.game_price - cart.gameDTO.game_discount }</p>											
-															</div>
+																<c:set var="percent" value="${cart.gameDTO.game_discount/cart.gameDTO.game_price*100 }" />											
+																<p style="text-decoration: line-through; color: rgba(255,255,255,0.5)">&#xFFE6; ${cart.gameDTO.game_price }</p>											
+																<p>&nbsp;&rarr;&nbsp;&#xFFE6; ${cart.gameDTO.game_price - cart.gameDTO.game_discount }&nbsp;&nbsp;</p>
+																<div class="card-text store-discount-percent">${fn:substringBefore(percent, ".")}%</div>
+															</div>											
 														</c:otherwise>
 													</c:choose>
 												</c:otherwise>
