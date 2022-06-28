@@ -16,3 +16,4 @@ function pwfind_focusOut() {
 		document.getElementById("pwfind_id").innerHTML = "";
 	}
 }
+

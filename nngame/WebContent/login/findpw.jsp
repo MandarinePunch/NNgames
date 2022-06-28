@@ -29,12 +29,12 @@
 	<!-- mainContents -->
 	<div style="width: 100%; height: 60vh;">
 		<div class="container"
-			style="padding-top: 150px; width: 30%; margin: 0 auto; color: white;">
+			style="padding-top: 150px; width: 35%; margin: 0 auto; color: white;">
 			<!-- PwFind Form -->
 			<div class="row">
 				<c:choose>
 					<c:when test="${empty requestScope.findout}">
-						<h1 style="font-size: 20px; text-align: center;">비밀번호 찾기</h1>
+						<h2 style="text-align: center;">비밀번호 찾기</h2>
 						<form action="/user/userPwFind" onsubmit="return checkId()"
 							method="post">
 							<div class="mb-3">
@@ -47,12 +47,13 @@
 							</div>
 							<input type="submit" class="btn submit-btn" style="width: 100%;"
 								value="비밀번호 찾기">
+							<p style="margin-top: 10px; font-size: 12px;">※ 가입된 이메일로 임시비밀번호를 발송해드립니다.</p>
 						</form>
 					</c:when>
 					<c:otherwise>
 						<div align="center">
 							<h2>비밀번호 찾기 결과</h2><br>
-							<h3>${requestScope.findout }</h3>
+							<p>${requestScope.findout }</p>
 						</div>
 					</c:otherwise>
 				</c:choose>
