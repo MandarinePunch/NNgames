@@ -66,7 +66,12 @@ public class StoreGameListAction implements Action{
 			}else if( sort.equals("ASC") ) {
 				request.setAttribute("gamelist", sdao.getSortGenreASC(genre));
 					
-			}	
+			}else if( sort.equals("DISCOUNT") ) {
+				genreCnt = sdao.getGenreDiscountCnt(genre);
+				request.setAttribute("totalCnt", genreCnt);
+				request.setAttribute("gamelist", sdao.getGenreDiscountGame(genre));
+				
+			}
 		}
 		
 		// forward방식으로 보내기

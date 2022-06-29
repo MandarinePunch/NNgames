@@ -72,13 +72,21 @@ public class StoreDAO {
 		return sortAsc;
 	}
 
+	// 할인된 게임 수 가져오기
 	public int getDiscountCnt() {
 		return sqlsession.selectOne("Store.getDiscountCnt");
 	}
 
-
+	// 장르별 할인 게임 가져오기
+	public List<StoreDTO> getGenreDiscountGame(int genre) {
+		List<StoreDTO> list = sqlsession.selectList("Store.getGenreDiscountGame", genre);
+		
+		return list;
+	}
 	
-	
-	
+	// 장르별 할인 게임 개수 가져오기
+	public int getGenreDiscountCnt(int genre) {
+		return sqlsession.selectOne("Store.getGenreDiscountCnt", genre);
+	}
 
 }

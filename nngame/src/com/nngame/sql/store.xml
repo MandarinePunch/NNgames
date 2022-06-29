@@ -119,7 +119,33 @@
 		ORDER BY GAME_DISCOUNT DESC
 	</select>
 	
+	<!-- 할인 게임 수 -->
 	<select id="getDiscountCnt" resultType="_int">
 		SELECT COUNT(*) FROM GAME WHERE GAME_DISCOUNT != 0
 	</select>
+	
+	<!-- 장르별 할인 게임 -->
+	<select id="getGenreDiscountGame" parameterType="_int" resultMap="gameListMap">
+		SELECT	g.GAME_NUM , g.GAME_NAME , g.GAME_PRICE, g.CATE_NUM, g.GAME_DISCOUNT, gi.IMAGE_MAIN 
+		FROM 	GAME g 
+ 			LEFT OUTER JOIN CATEGORY c ON g.CATE_NUM = c.CATE_NUM 
+ 			LEFT OUTER JOIN GAME_IMAGE gi ON g.GAME_NUM = gi.GAME_NUM 
+		WHERE g.CATE_NUM  = #{genre}
+		AND	  g.GAME_DISCOUNT != 0
+		ORDER BY GAME_PRICE
+	</select>
+	
+	<!-- 장르별 할인 게임 수 -->
+	<select id="getGenreDiscountCnt" parameterType="_int" resultType="_int">
+		SELECT COUNT(*)
+		FROM GAME
+		WHERE CATE_NUM = #{genre}
+		AND	  GAME_DISCOUNT != 0
+	</select>
+	
 </mapper>
+
+
+
+
+
