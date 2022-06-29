@@ -28,6 +28,7 @@
 	<c:set var="user" scope="session" value="${udto }"/>
 	<c:set var="totalCnt" scope="request" value="${totalCnt }"/>
 	<c:set var="libraryList" scope="request" value="${libraryList }"/>
+	<c:set var="isSearch" scope="request" value="${isSearch }"/>
 	
 	<div class="container lib">
 		<!-- 검색 바 -->
@@ -36,7 +37,7 @@
 				<div class="container-fluid">
 					<form class="d-flex search-sb-100">
 						<input class="form-control me-2 search-input" type="search"
-							placeholder="검색어를 입력하세요" aria-label="Search">
+							placeholder="검색어를 입력하세요" aria-label="Search" name="lib_search">
 						<button class="btn btn-outline-success" type="submit">Search</button>
 					</form>
 				</div>
@@ -61,7 +62,14 @@
 		<c:choose>
 			<c:when test="${empty libraryList }">
 				<div class="lib-empty">
-					<h3>구매한 게임이 없습니다</h3>
+					<c:choose>
+						<c:when test="${empty isSearch }">
+							<h3>구매한 게임이 없습니다</h3>
+						</c:when>
+						<c:otherwise>
+							<h3>검색된 게임이 없습니다</h3>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</c:when>
 			<c:otherwise>

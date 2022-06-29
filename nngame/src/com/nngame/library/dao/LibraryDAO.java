@@ -1,5 +1,6 @@
 package com.nngame.library.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession; 
@@ -37,6 +38,27 @@ public class LibraryDAO {
 		return list;
 	}
 	
+	// 라이브러리 내에 게임 검색
+	public List<LibraryDTO> getLibSearchList(int user_num, String keyword) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("user_num", user_num);
+		map.put("keyword", keyword);
+		
+		List<LibraryDTO> LibraryList = sqlsession.selectList("Library.getLibSearchList", map);
+		
+		return LibraryList;
+	}
+	
+	// 라이브러리 내 검색된 게임 수
+	public int getLibSearchCnt(int user_num, String keyword) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("user_num", user_num);
+		map.put("keyword", keyword);
+		
+		int result = sqlsession.selectOne("Library.getLibSearchCnt", map);
+		
+		return result;
+	}
 }
 
 

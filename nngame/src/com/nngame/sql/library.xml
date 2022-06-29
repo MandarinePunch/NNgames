@@ -54,7 +54,29 @@
 		SELECT COUNT(*) FROM LIBRARY WHERE USER_NUM = #{user_num}
 	</select>
 	
+	<!-- 게임 번호 가져옴 -->
 	<select id="getGameNum" parameterType="_int" resultType="_int">
 		SELECT GAME_NUM FROM LIBRARY l WHERE USER_NUM = #{user_num}
+	</select>
+	
+	<!-- 라이브러리 내에 검색 -->
+	<select id="getLibSearchList" parameterType="hashmap" resultMap="libraryMap">
+		SELECT 	g.GAME_NAME, gi.IMAGE_BANNER, l.LIB_PLAYTIME, l.USER_NUM
+		FROM 	LIBRARY l 
+			LEFT OUTER JOIN GAME g			ON l.GAME_NUM = g.GAME_NUM
+			LEFT OUTER JOIN GAME_IMAGE gi 	ON g.GAME_NUM = gi.GAME_NUM
+		WHERE l.USER_NUM = #{user_num}
+		AND   g.GAME_NAME LIKE '%' ||  #{keyword} || '%'
+		ORDER BY g.GAME_NAME ASC
+	</select>
+	
+	<!-- 라이브러리 내 검색된 게임 개수 -->
+	<select id="getLibSearchCnt" parameterType="hashmap" resultType="_int">
+		SELECT 	count(*)
+		FROM 	LIBRARY l 
+			LEFT OUTER JOIN GAME g	ON l.GAME_NUM = g.GAME_NUM
+		WHERE l.USER_NUM = #{user_num}
+		AND   g.GAME_NAME LIKE '%' ||  #{keyword} || '%'
+		ORDER BY g.GAME_NAME ASC
 	</select>
 </mapper>
