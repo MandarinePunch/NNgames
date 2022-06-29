@@ -41,7 +41,14 @@ public class SearchDAO {
 		return sortAsc;
 	}
 	
+	public List<SearchDTO> getSearchDiscount(String keyword) {
+		List<SearchDTO> sortAsc = sqlsession.selectList("Search.getSearchDiscount", keyword);
+		return sortAsc;
+	}
 	
+	public int getSearchDiscountCnt(String keyword) {
+		return sqlsession.selectOne("Search.getSearchDiscountCnt", keyword);
+	}
 	
 	
 	
