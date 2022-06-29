@@ -20,6 +20,7 @@ public class LibraryListAction implements Action{
 		// 로그인한 유저 세션 가져오기
 		HttpSession session = request.getSession();
 		UserDTO udto = (UserDTO) session.getAttribute("udto");
+		String keyword = request.getParameter("lib_search");
 		
 		// 유저정보를 담아올 변수
 		int user_num = 0;
@@ -29,11 +30,21 @@ public class LibraryListAction implements Action{
 			user_num = udto.getUser_num();
 			System.out.println("user_num :"+user_num); // 에러 추적 과정
 			
-			int count = ldao.getTotalCnt(user_num);
-			System.out.println("count : " + count);
-			
-			request.setAttribute("libraryList", ldao.getLibraryList(user_num));
-			request.setAttribute("totalCnt", count);
+			// 검색 내용이 없을 때
+			if(keyword == null) {
+				int count = ldao.getTotalCnt(user_num);
+				
+				request.setAttribute("libraryList", ldao.getLibraryList(user_num));
+				request.setAttribute("totalCnt", count);
+				
+			// 검색 내용이 있을 때
+			} else {
+				int count = ldao.getLibSearchCnt(user_num, keyword);
+				
+				request.setAttribute("libraryList", ldao.getLibSearchList(user_num, keyword));
+				request.setAttribute("totalCnt", count);
+				request.setAttribute("isSearch", true);
+			}
 			
 			forward.setRedirect(false);
 			forward.setPath("/library.jsp");
