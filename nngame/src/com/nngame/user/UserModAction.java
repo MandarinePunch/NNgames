@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.nngame.action.Action;
 import com.nngame.action.ActionForward;
+import com.nngame.encrypt.SHA256;
 import com.nngame.gamedetail.dao.GameDetailDAO;
 import com.nngame.support.dao.SupportDAO;
 import com.nngame.support.dao.SupportDTO;
@@ -41,9 +42,13 @@ public class UserModAction implements Action{
 		udto = udao.getUserData(user_email);
 		
 		String isLinked = udao.isLinkUser(user_email);
-		if(isLinked.equals("ka") || isLinked.equals("na")) {
-			System.out.println("연동유저, 연동 파라미터값 부여됨");
-			udto.setUser_pwd(isLinked);
+		
+		if(isLinked.equals(SHA256.getSHA256("ka"))) {
+			System.out.println("카카오 연동유저, 연동 파라미터값 부여됨");
+			udto.setUser_pwd("ka");
+		} else if(isLinked.equals(SHA256.getSHA256("na"))) {
+			System.out.println("네이버 연동유저, 연동 파라미터값 부여됨");
+			udto.setUser_pwd("na");
 		} else {
 			System.out.println("연동 유저 아님");
 		}

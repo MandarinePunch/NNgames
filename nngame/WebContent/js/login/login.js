@@ -63,15 +63,15 @@ function kakaoLogin() {
 
 // 네이버 로그인 연동
 var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "M_PF7i1iZSNbJ5ywRFvF", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-			callbackUrl: "http://localhost:9090/login/login.jsp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
-			isPopup: false,
-			callbackHandle: true
-		}
-	);	
-	naverLogin.init();
-	document.getElementById('naverIdLogin_loginButton').addEventListener('click', function () {
+	{
+		clientId: "M_PF7i1iZSNbJ5ywRFvF", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
+		callbackUrl: "http://localhost:9090/login/login.jsp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+		isPopup: false,
+		callbackHandle: true
+	}
+);	
+naverLogin.init();
+document.getElementById('naverIdLogin_loginButton').addEventListener('click', function () {
 	naverLogin.getLoginStatus(function (status) {
 		if (status) {
 			var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문
