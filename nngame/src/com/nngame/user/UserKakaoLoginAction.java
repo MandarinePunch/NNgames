@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nngame.action.Action;
 import com.nngame.action.ActionForward;
+import com.nngame.encrypt.SHA256;
 import com.nngame.user.dao.UserDAO;
 import com.nngame.user.dao.UserDTO;
 
@@ -21,7 +22,7 @@ public class UserKakaoLoginAction implements Action{
 		
 		String usernick = "Kakao_" + request.getParameter("kakaonick");
 		String userid = request.getParameter("kakaoEmail");
-		String userpw = "ka";
+		String userpw = SHA256.getSHA256("ka");
 		String age = request.getParameter("kakaoage");
 		String birth = request.getParameter("kakaobirth");
 		String userbirth = "2099-01-01";

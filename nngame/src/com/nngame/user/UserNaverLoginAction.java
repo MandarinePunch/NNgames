@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nngame.action.Action;
 import com.nngame.action.ActionForward;
+import com.nngame.encrypt.SHA256;
 import com.nngame.user.dao.UserDAO;
 import com.nngame.user.dao.UserDTO;
 
@@ -21,7 +22,7 @@ public class UserNaverLoginAction implements Action{
 		
 		String usernick = "Naver_" + request.getParameter("navernick");
 		String userid = request.getParameter("naverEmail");
-		String userpw = "na";
+		String userpw = SHA256.getSHA256("na");
 		String age = request.getParameter("naverage");
 		String birth = request.getParameter("naverbirth");
 		String userbirth = age + "-" + birth;
