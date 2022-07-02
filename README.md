@@ -9,7 +9,7 @@ NNgames
   김서정 - <br>
   김영민 - <br>
   손영도 - <br>
-  박준호 - https://github.com/Moulru<br>
+  박준호 - Github : https://github.com/Moulru<br>
 # 프로젝트기간 <br>
 22.05.17 ~ 22.07.01
 # 개발도구 및 환경 <br>
