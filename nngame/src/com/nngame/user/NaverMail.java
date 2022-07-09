@@ -8,6 +8,6 @@ public class NaverMail extends Authenticator{
 	@Override
 	protected PasswordAuthentication getPasswordAuthentication() {
 		
-		return new PasswordAuthentication("qkrwnsgh345@naver.com", "nngame1234");
+		return new PasswordAuthentication("email@email.com", "password");
 	}
 }
